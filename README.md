@@ -1,6 +1,6 @@
 # 🗿 Mythical Agent Month
 
-<p align="center"><img src="assets/hero-v6.webp" alt="A developer texting their AI agent, a real moai at Rano Raraku. You: how long for the full roadmap? Agent: realistically? 3 months. You: bro, you’re the one building it. Agent: …with standups? You: no. with tests. go. Agent: done, 106/106 tasks in 35h. …ok that estimate aged badly" width="100%"></p>
+<p align="center"><img src="assets/hero-v7.webp" alt="A developer texting their AI agent, a real moai at Rano Raraku. You: how long for the full roadmap? Agent: realistically? 3 months. You: bro we ship it today. Agent: …with standups? You: no standups. just tests. go. Agent: done, 106/106 tasks. Caption: took 35h. we’re calling that today" width="100%"></p>
 
 **Your agent said 5 months. Agents built it in 35 hours.**
 
