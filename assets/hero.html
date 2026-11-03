@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mythical Agent Month hero</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #0b1020; }
+  svg { display: block; }
+  .sans { font-family: -apple-system, "SF Pro Display", "Inter", "Helvetica Neue", Arial, sans-serif; }
+  .mono { font-family: "SF Mono", "JetBrains Mono", Menlo, monospace; }
+</style>
+</head>
+<body>
+<svg width="1280" height="640" viewBox="0 0 1280 640" xmlns="http://www.w3.org/2000/svg" class="sans">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1020"/>
+      <stop offset="1" stop-color="#141a33"/>
+    </linearGradient>
+    <linearGradient id="leftCard" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a1620"/>
+      <stop offset="1" stop-color="#1a1222"/>
+    </linearGradient>
+    <linearGradient id="rightCard" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0f2a26"/>
+      <stop offset="1" stop-color="#101d2a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#5eead4" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#5eead4" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#ffffff" opacity="0.05"/>
+    </pattern>
+  </defs>
+
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <rect width="1280" height="640" fill="url(#dots)"/>
+
+  <!-- header -->
+  <text x="48" y="58" font-size="26" font-weight="800" fill="#f8fafc" letter-spacing="-0.5">🗿 Mythical Agent Month</text>
+  <text x="1232" y="58" font-size="16" fill="#94a3b8" text-anchor="end" class="mono">estimates for agent-built software</text>
+
+  <!-- ============ LEFT: the estimate ============ -->
+  <g filter="url(#shadow)">
+    <rect x="40" y="86" width="580" height="450" rx="22" fill="url(#leftCard)" stroke="#fb7185" stroke-opacity="0.35"/>
+  </g>
+  <text x="68" y="122" font-size="13" font-weight="800" fill="#fb7185" letter-spacing="2.5">THE AI ESTIMATE</text>
+
+  <!-- prompt bar -->
+  <rect x="68" y="138" width="524" height="46" rx="12" fill="#0b1020" stroke="#334155"/>
+  <text x="88" y="168" font-size="16" fill="#cbd5e1" class="mono"><tspan fill="#fb7185">❯</tspan> how long will this 106-task roadmap take?</text>
+  <rect x="566" y="152" width="9" height="18" fill="#cbd5e1" opacity="0.8"/>
+
+  <!-- flying calendar pages -->
+  <g font-weight="800" text-anchor="middle">
+    <g transform="translate(92 236) rotate(-14)">
+      <rect width="64" height="72" rx="8" fill="#f8fafc"/><rect width="64" height="20" rx="8" fill="#fb7185"/><rect y="12" width="64" height="8" fill="#fb7185"/>
+      <text x="32" y="15" font-size="11" fill="#fff">JAN</text><text x="32" y="56" font-size="26" fill="#1e293b">1</text>
+    </g>
+    <g transform="translate(104 352) rotate(10)">
+      <rect width="64" height="72" rx="8" fill="#f8fafc"/><rect width="64" height="20" rx="8" fill="#fb7185"/><rect y="12" width="64" height="8" fill="#fb7185"/>
+      <text x="32" y="15" font-size="11" fill="#fff">FEB</text><text x="32" y="56" font-size="26" fill="#1e293b">14</text>
+    </g>
+    <g transform="translate(74 452) rotate(-6)">
+      <rect width="64" height="72" rx="8" fill="#f8fafc"/><rect width="64" height="20" rx="8" fill="#fb7185"/><rect y="12" width="64" height="8" fill="#fb7185"/>
+      <text x="32" y="15" font-size="11" fill="#fff">MAR</text><text x="32" y="56" font-size="26" fill="#1e293b">31</text>
+    </g>
+  </g>
+
+  <!-- robot (confident) -->
+  <g transform="translate(190 250)">
+    <line x1="80" y1="0" x2="80" y2="-26" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="80" cy="-30" r="8" fill="#fb7185"/>
+    <rect x="0" y="0" width="160" height="124" rx="26" fill="#cbd5e1"/>
+    <rect x="14" y="14" width="132" height="92" rx="18" fill="#0b1020"/>
+    <!-- smug eyes -->
+    <path d="M40 54 q12 -12 24 0" stroke="#fb7185" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M96 54 q12 -12 24 0" stroke="#fb7185" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M60 80 q20 12 40 0" stroke="#fb7185" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <!-- body -->
+    <rect x="26" y="132" width="108" height="100" rx="20" fill="#94a3b8"/>
+    <rect x="46" y="150" width="68" height="34" rx="8" fill="#0b1020"/>
+    <text x="80" y="173" font-size="15" font-weight="800" fill="#fb7185" text-anchor="middle" class="mono">GANTT</text>
+    <circle cx="58" cy="208" r="7" fill="#64748b"/><circle cx="80" cy="208" r="7" fill="#64748b"/><circle cx="102" cy="208" r="7" fill="#64748b"/>
+    <!-- arm pointing to bubble -->
+    <path d="M134 160 q36 -10 52 -46" stroke="#94a3b8" stroke-width="14" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- estimate bubble -->
+  <g filter="url(#shadow)">
+    <rect x="382" y="214" width="214" height="150" rx="18" fill="#f8fafc"/>
+    <path d="M396 364 l-14 26 l40 -26 z" fill="#f8fafc"/>
+  </g>
+  <text x="400" y="246" font-size="15" fill="#475569" font-style="italic">Realistically…</text>
+  <text x="400" y="296" font-size="44" font-weight="900" fill="#e11d48" letter-spacing="-1.5">3 months</text>
+  <text x="400" y="324" font-size="14" fill="#475569">12 sprints · 4 devs</text>
+  <text x="400" y="346" font-size="14" fill="#475569">+ buffer, standups, QA</text>
+
+  <!-- gantt doom chart -->
+  <g transform="translate(382 414)">
+    <text x="0" y="0" font-size="12" fill="#fda4af" font-weight="700" letter-spacing="1.5">THE PLAN</text>
+    <rect x="0" y="12" width="70" height="12" rx="6" fill="#fb7185" opacity="0.9"/>
+    <rect x="40" y="30" width="96" height="12" rx="6" fill="#fb7185" opacity="0.75"/>
+    <rect x="90" y="48" width="84" height="12" rx="6" fill="#fb7185" opacity="0.6"/>
+    <rect x="130" y="66" width="80" height="12" rx="6" fill="#fb7185" opacity="0.45"/>
+    <text x="210" y="106" font-size="12" fill="#fda4af" text-anchor="end" class="mono">Q1 … Q2 … 😴</text>
+  </g>
+
+  <!-- ============ RIGHT: the reality ============ -->
+  <g filter="url(#shadow)">
+    <rect x="660" y="86" width="580" height="450" rx="22" fill="url(#rightCard)" stroke="#5eead4" stroke-opacity="0.35"/>
+  </g>
+  <text x="688" y="122" font-size="13" font-weight="800" fill="#5eead4" letter-spacing="2.5">THE REALITY</text>
+
+  <!-- dev reply bubble -->
+  <g filter="url(#shadow)">
+    <rect x="688" y="140" width="300" height="96" rx="18" fill="#f8fafc"/>
+    <path d="M800 236 l18 28 l12 -28 z" fill="#f8fafc"/>
+  </g>
+  <text x="708" y="180" font-size="26" font-weight="900" fill="#0f172a" letter-spacing="-0.5">Cute. 😏</text>
+  <text x="708" y="214" font-size="19" font-weight="700" fill="#0f766e">My agents ship it tomorrow.</text>
+
+  <!-- glow behind dev -->
+  <circle cx="860" cy="420" r="150" fill="url(#glow)" opacity="0.5"/>
+
+  <!-- developer -->
+  <g transform="translate(780 270)">
+    <!-- hoodie -->
+    <path d="M10 260 q0 -110 70 -118 h40 q70 8 70 118 z" fill="#334155"/>
+    <path d="M70 142 q30 26 60 0" stroke="#1e293b" stroke-width="6" fill="none"/>
+    <!-- neck + head -->
+    <rect x="86" y="118" width="28" height="28" rx="8" fill="#f2c7a5"/>
+    <circle cx="100" cy="82" r="50" fill="#f2c7a5"/>
+    <!-- hair -->
+    <path d="M50 78 q0 -58 56 -56 q46 2 46 52 q-18 -24 -50 -22 q-30 2 -52 26 z" fill="#1e1b2e"/>
+    <!-- headphones -->
+    <path d="M46 84 q2 -70 54 -70 q52 0 54 70" stroke="#5eead4" stroke-width="7" fill="none"/>
+    <rect x="38" y="74" width="16" height="30" rx="7" fill="#5eead4"/>
+    <rect x="146" y="74" width="16" height="30" rx="7" fill="#5eead4"/>
+    <!-- smirk face: one raised brow, side-eye, half smile -->
+    <path d="M70 66 l20 -4" stroke="#1e1b2e" stroke-width="5" stroke-linecap="round"/>
+    <path d="M110 58 q12 -8 24 -2" stroke="#1e1b2e" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <ellipse cx="84" cy="80" rx="5" ry="5.5" fill="#1e1b2e"/>
+    <ellipse cx="124" cy="78" rx="5" ry="5.5" fill="#1e1b2e"/>
+    <path d="M86 104 q20 8 36 -8" stroke="#9a3412" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <circle cx="66" cy="96" r="7" fill="#fb7185" opacity="0.25"/>
+    <circle cx="138" cy="94" r="7" fill="#fb7185" opacity="0.25"/>
+  </g>
+
+  <!-- laptop with live run -->
+  <g transform="translate(944 300)">
+    <rect x="0" y="0" width="270" height="168" rx="12" fill="#0b1020" stroke="#5eead4" stroke-opacity="0.6" stroke-width="2"/>
+    <g class="mono" font-size="13">
+      <text x="16" y="28" fill="#64748b">$ workflow run roadmap</text>
+      <text x="16" y="52" fill="#5eead4">✓ phase 1-9 merged</text>
+      <text x="16" y="74" fill="#5eead4">✓ 106/106 tasks done</text>
+      <text x="16" y="96" fill="#5eead4">✓ 1,611 tests green</text>
+      <text x="16" y="118" fill="#e2e8f0">⏱ 35.3 h · 6 agents</text>
+    </g>
+    <rect x="16" y="134" width="238" height="12" rx="6" fill="#1e293b"/>
+    <rect x="16" y="134" width="238" height="12" rx="6" fill="#5eead4"/>
+    <path d="M-22 168 h314 l-18 22 h-278 z" fill="#475569"/>
+  </g>
+
+  <!-- coffee -->
+  <g transform="translate(700 468)">
+    <rect x="0" y="0" width="38" height="44" rx="6" fill="#f8fafc"/>
+    <path d="M38 10 q16 0 16 14 q0 14 -16 14" stroke="#f8fafc" stroke-width="5" fill="none"/>
+    <path d="M10 -8 q6 -8 0 -16 M22 -8 q6 -8 0 -16" stroke="#94a3b8" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+  </g>
+
+  <!-- tiny sweating robot peeking -->
+  <g transform="translate(1138 104)">
+    <rect x="0" y="0" width="76" height="58" rx="14" fill="#cbd5e1"/>
+    <rect x="8" y="8" width="60" height="42" rx="10" fill="#0b1020"/>
+    <circle cx="26" cy="28" r="5" fill="#fb7185"/><circle cx="50" cy="28" r="5" fill="#fb7185"/>
+    <path d="M28 42 q10 -6 20 0" stroke="#fb7185" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M70 6 q8 12 0 16 q-8 -4 0 -16 z" fill="#7dd3fc"/>
+  </g>
+  <text x="1176" y="182" font-size="12" fill="#94a3b8" text-anchor="middle" class="mono">recalculating…</text>
+
+  <!-- ============ VS ============ -->
+  <g transform="translate(640 312)">
+    <circle r="34" fill="#0b1020" stroke="#f8fafc" stroke-opacity="0.2" stroke-width="2"/>
+    <text y="9" font-size="24" font-weight="900" fill="#f8fafc" text-anchor="middle" font-style="italic">VS</text>
+  </g>
+
+  <!-- ============ bottom stats ============ -->
+  <g font-size="16" font-weight="700">
+    <rect x="40" y="560" width="270" height="48" rx="24" fill="#2a1620" stroke="#fb7185" stroke-opacity="0.4"/>
+    <text x="175" y="590" text-anchor="middle" fill="#fda4af">Naive estimate: <tspan text-decoration="line-through">~3 months</tspan></text>
+
+    <rect x="322" y="560" width="250" height="48" rx="24" fill="#122033" stroke="#93c5fd" stroke-opacity="0.4"/>
+    <text x="447" y="590" text-anchor="middle" fill="#bfdbfe">Skill predicted: 36.4 h</text>
+
+    <rect x="584" y="560" width="216" height="48" rx="24" fill="#0f2a26" stroke="#5eead4" stroke-opacity="0.5"/>
+    <text x="692" y="590" text-anchor="middle" fill="#99f6e4">Real run: 35.3 h ✓</text>
+  </g>
+  <text x="1232" y="590" font-size="14" fill="#64748b" text-anchor="end" class="mono">github.com/MedAdemBHA/mythical-agent-month</text>
+</svg>
+</body>
+</html>

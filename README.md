@@ -1,5 +1,7 @@
 # 🗿 Mythical Agent Month
 
+<p align="center"><img src="assets/hero.png" alt="The AI estimates 3 months; the developer's agents ship the 106-task roadmap in 35.3 hours" width="100%"></p>
+
 **Your agent said 5 months. Agents built it in 35 hours.**
 
 An estimation skill for Claude Code (and a paste-in prompt for any other assistant) that stops AI from quoting human-team timelines for agent-built software.
@@ -133,6 +135,7 @@ skills/mythical-agent-month/
   scripts/calibrate.py      read your agent transcripts, get your own numbers
   assets/portable-prompt.md paste-in version for any assistant
 examples/                   inputs + generated outputs
+assets/hero.html            source of the banner (render: headless Chrome, 1280x640 @2x)
 ```
 
 ## Credits
