@@ -1,6 +1,6 @@
 # 🗿 Mythical Agent Month
 
-<p align="center"><img src="assets/hero-v4.webp" alt="A real moai at Rano Raraku. Chat: Moai: Realistically… three months. You: Cute. My agents ship it tomorrow. Moai: With standups? You: With tests. 106/106 tasks, 35.3 h. Moai: typing… recalculating." width="100%"></p>
+<p align="center"><img src="assets/hero-v5.webp" alt="A real moai at Rano Raraku, texting. Moai: realistically? 3 months. You: lol. my agents ship it tomorrow. Moai: with standups?? You: with tests. 106/106 tasks, done in 35h. Moai: typing… recalculating" width="100%"></p>
 
 **Your agent said 5 months. Agents built it in 35 hours.**
 
