@@ -1,6 +1,6 @@
 # 🗿 Mythical Agent Month
 
-<p align="center"><img src="assets/hero.webp" alt="An engraved stone statue at dusk with 3 MONTHS carved into it and a plaque: THE ESTIMATE, c. 1975, limestone, never shipped. Chat: Statue: Realistically… three months. You: Cute. My agents ship it tomorrow. Statue: With standups? You: With tests. 106/106 tasks, 35.3 h. Statue: …recalculating" width="100%"></p>
+<p align="center"><img src="assets/hero-v3.webp" alt="An engraved stone statue at dusk with 3 MONTHS carved into it and a plaque: THE ESTIMATE, c. 1975, limestone, never shipped. Chat: Statue: Realistically… three months. You: Cute. My agents ship it tomorrow. Statue: With standups? You: With tests. 106/106 tasks, 35.3 h. Statue: …recalculating" width="100%"></p>
 
 **Your agent said 5 months. Agents built it in 35 hours.**
 
