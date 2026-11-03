@@ -1,6 +1,6 @@
 # 🗿 Mythical Agent Month
 
-<p align="center"><img src="assets/hero-v3.webp" alt="An engraved stone statue at dusk with 3 MONTHS carved into it and a plaque: THE ESTIMATE, c. 1975, limestone, never shipped. Chat: Statue: Realistically… three months. You: Cute. My agents ship it tomorrow. Statue: With standups? You: With tests. 106/106 tasks, 35.3 h. Statue: …recalculating" width="100%"></p>
+<p align="center"><img src="assets/hero-v4.webp" alt="A real moai at Rano Raraku. Chat: Moai: Realistically… three months. You: Cute. My agents ship it tomorrow. Moai: With standups? You: With tests. 106/106 tasks, 35.3 h. Moai: typing… recalculating." width="100%"></p>
 
 **Your agent said 5 months. Agents built it in 35 hours.**
 
@@ -169,7 +169,7 @@ assets/hero.html            source of the banner (render: headless Chrome, 1280x
 
 ## Credits
 
-The name is a nod to Fred Brooks' *The Mythical Man-Month* (1975). Mode A builds on an earlier developer-plus-AI estimate skill. The case study comes from a real autonomous build in 2026, anonymised.
+The name is a nod to Fred Brooks' *The Mythical Man-Month* (1975). Banner photo: ["Moai Rano raraku"](https://commons.wikimedia.org/wiki/File:Moai_Rano_raraku.jpg) by Aurbina, Wikimedia Commons, public domain. Mode A builds on an earlier developer-plus-AI estimate skill. The case study comes from a real autonomous build in 2026, anonymised.
 
 ## License
 
