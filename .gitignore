@@ -3,3 +3,4 @@ __pycache__/
 .DS_Store
 *.skill
 runs.csv
+assets/hero.png

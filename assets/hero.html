@@ -16,31 +16,32 @@
   <defs>
     <!-- sky: night above, a last ember of dusk on the horizon -->
     <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#05070d"/>
-      <stop offset="0.45" stop-color="#0c1220"/>
-      <stop offset="0.68" stop-color="#1d1a24"/>
-      <stop offset="0.76" stop-color="#4a2a22"/>
-      <stop offset="0.80" stop-color="#7a3b1f"/>
-      <stop offset="0.82" stop-color="#2a1a18"/>
-      <stop offset="1" stop-color="#07080c"/>
+      <stop offset="0" stop-color="#141d38"/>
+      <stop offset="0.38" stop-color="#2c3557"/>
+      <stop offset="0.58" stop-color="#5b4766"/>
+      <stop offset="0.70" stop-color="#b0605a"/>
+      <stop offset="0.77" stop-color="#e8944f"/>
+      <stop offset="0.80" stop-color="#f6b46a"/>
+      <stop offset="0.82" stop-color="#3a2a2c"/>
+      <stop offset="1" stop-color="#14121a"/>
     </linearGradient>
     <radialGradient id="sunset" cx="0.72" cy="0.78" r="0.55">
-      <stop offset="0" stop-color="#f59e0b" stop-opacity="0.28"/>
+      <stop offset="0" stop-color="#fbbf24" stop-opacity="0.45"/>
       <stop offset="0.4" stop-color="#c2410c" stop-opacity="0.10"/>
       <stop offset="1" stop-color="#000" stop-opacity="0"/>
     </radialGradient>
     <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#111016"/>
-      <stop offset="1" stop-color="#040508"/>
+      <stop offset="0" stop-color="#2a2430"/>
+      <stop offset="1" stop-color="#121018"/>
     </linearGradient>
 
     <!-- stone: base tone lit teal from the left (the laptop), ember rim from the right (dusk) -->
     <linearGradient id="stoneTone" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#5f7273"/>
-      <stop offset="0.35" stop-color="#4a4c50"/>
-      <stop offset="0.75" stop-color="#303036"/>
-      <stop offset="0.95" stop-color="#3d2a22"/>
-      <stop offset="1" stop-color="#6b3b22"/>
+      <stop offset="0" stop-color="#8fa3a1"/>
+      <stop offset="0.35" stop-color="#7c7676"/>
+      <stop offset="0.72" stop-color="#5e5258"/>
+      <stop offset="0.93" stop-color="#8a5a44"/>
+      <stop offset="1" stop-color="#d08a52"/>
     </linearGradient>
     <linearGradient id="stoneShade" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#000" stop-opacity="0.15"/>
@@ -72,7 +73,7 @@
     <filter id="grain" x="0" y="0" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="3" stitchTiles="stitch"/>
       <feColorMatrix type="saturate" values="0"/>
-      <feComponentTransfer><feFuncA type="table" tableValues="0 0.10"/></feComponentTransfer>
+      <feComponentTransfer><feFuncA type="table" tableValues="0 0.07"/></feComponentTransfer>
     </filter>
 
     <radialGradient id="screenGlow" cx="0.5" cy="0.5" r="0.5">
@@ -85,9 +86,9 @@
       <stop offset="1" stop-color="#5eead4" stop-opacity="0"/>
     </linearGradient>
     <linearGradient id="vignette" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#000" stop-opacity="0.55"/>
-      <stop offset="0.45" stop-color="#000" stop-opacity="0"/>
-      <stop offset="1" stop-color="#000" stop-opacity="0.35"/>
+      <stop offset="0" stop-color="#0b0f1e" stop-opacity="0.55"/>
+      <stop offset="0.5" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.18"/>
     </linearGradient>
     <clipPath id="headClip"><use href="#moaiShape"/></clipPath>
   </defs>
@@ -98,17 +99,17 @@
   <g id="stars"></g>
 
   <!-- distant ridge -->
-  <path d="M0 492 L90 470 L170 482 L260 458 L340 476 L430 462 L520 480 L610 466 L700 478 L780 455 L860 472 L960 450 L1060 470 L1160 458 L1280 474 L1280 520 L0 520 Z" fill="#0d0d12"/>
+  <path d="M0 492 L90 470 L170 482 L260 458 L340 476 L430 462 L520 480 L610 466 L700 478 L780 455 L860 472 L960 450 L1060 470 L1160 458 L1280 474 L1280 520 L0 520 Z" fill="#3a2c3a"/>
   <path d="M0 505 L120 494 L240 502 L380 490 L520 503 L680 492 L820 500 L980 488 L1120 498 L1280 492 L1280 640 L0 640 Z" fill="url(#ground)"/>
 
   <!-- far moai silhouettes in the haze -->
-  <g fill="#14131a" opacity="0.9">
+  <g fill="#4a3442" opacity="0.85">
     <path transform="translate(700 432) scale(0.17)" d="M60 40 Q130 0 200 40 L214 160 Q236 170 234 200 L232 300 Q230 320 214 318 L210 360 Q200 400 130 404 Q60 400 50 360 L46 318 Q30 320 28 300 L26 200 Q24 170 46 160 Z M10 470 Q20 400 70 390 L190 390 Q240 400 250 470 Z"/>
     <path transform="translate(1190 422) scale(0.22)" d="M60 40 Q130 0 200 40 L214 160 Q236 170 234 200 L232 300 Q230 320 214 318 L210 360 Q200 400 130 404 Q60 400 50 360 L46 318 Q30 320 28 300 L26 200 Q24 170 46 160 Z M10 470 Q20 400 70 390 L190 390 Q240 400 250 470 Z"/>
   </g>
 
   <!-- haze over the horizon -->
-  <ellipse cx="760" cy="488" rx="620" ry="36" fill="#9aa4b2" opacity="0.07" filter="url(#blur24)"/>
+  <ellipse cx="760" cy="488" rx="620" ry="40" fill="#f6c28b" opacity="0.18" filter="url(#blur24)"/>
 
   <!-- ===== the great statue ===== -->
   <g transform="translate(842 72) scale(1.18 1.08)">
@@ -141,8 +142,8 @@
       <path d="M30 210 L34 300" stroke="#000" stroke-opacity="0.35" stroke-width="6"/>
       <path d="M230 210 L226 300" stroke="#000" stroke-opacity="0.45" stroke-width="6"/>
       <!-- right-side ember rim -->
-      <path d="M216 160 Q240 168 238 204 L234 302 Q232 324 214 322 L210 364" stroke="#f59e0b" stroke-opacity="0.35" stroke-width="3" fill="none" filter="url(#blur2)"/>
-      <path d="M202 44 L216 160" stroke="#f59e0b" stroke-opacity="0.25" stroke-width="3" fill="none" filter="url(#blur2)"/>
+      <path d="M216 160 Q240 168 238 204 L234 302 Q232 324 214 322 L210 364" stroke="#fbbf24" stroke-opacity="0.6" stroke-width="4" fill="none" filter="url(#blur2)"/>
+      <path d="M202 44 L216 160" stroke="#fbbf24" stroke-opacity="0.45" stroke-width="4" fill="none" filter="url(#blur2)"/>
       <!-- left-side teal bounce light from the laptop, rising from below -->
       <path d="M2 520 Q10 410 70 394 L80 394 Q30 420 20 520 Z" fill="#5eead4" opacity="0.10"/>
       <path d="M22 204 L26 302 Q28 324 46 322 L50 364" stroke="#5eead4" stroke-opacity="0.18" stroke-width="3" fill="none" filter="url(#blur2)"/>
@@ -165,18 +166,18 @@
   </g>
 
   <!-- fog bank in front of the base -->
-  <ellipse cx="900" cy="600" rx="520" ry="40" fill="#a5b4c3" opacity="0.10" filter="url(#blur24)"/>
+  <ellipse cx="900" cy="600" rx="520" ry="44" fill="#f3d9c0" opacity="0.14" filter="url(#blur24)"/>
   <ellipse cx="420" cy="590" rx="420" ry="26" fill="#a5b4c3" opacity="0.06" filter="url(#blur24)"/>
 
   <!-- ===== the developer ===== -->
   <!-- laptop light pooling on the ground and reaching toward the statue -->
-  <ellipse cx="704" cy="560" rx="150" ry="32" fill="url(#screenGlow)"/>
-  <path d="M720 540 L880 420 L880 620 L720 566 Z" fill="url(#beam)" filter="url(#blur8)"/>
-  <g transform="translate(662 512)">
+  <ellipse cx="740" cy="566" rx="220" ry="44" fill="url(#screenGlow)"/>
+  <path d="M770 520 L900 380 L900 630 L770 566 Z" fill="url(#beam)" filter="url(#blur8)"/>
+  <g transform="translate(616 470) scale(1.6)">
     <!-- seated figure, back-lit silhouette -->
-    <path d="M14 48 Q8 28 20 14 Q28 6 38 10 Q48 16 46 34 L44 48 Z" fill="#06070a"/>
-    <circle cx="31" cy="0" r="11" fill="#06070a"/>
-    <path d="M-6 54 Q20 40 50 46 Q80 48 92 56 L-6 58 Z" fill="#06070a"/>
+    <path d="M14 48 Q8 28 20 14 Q28 6 38 10 Q48 16 46 34 L44 48 Z" fill="#0b0a10"/>
+    <circle cx="31" cy="0" r="11" fill="#0b0a10"/>
+    <path d="M-6 54 Q20 40 50 46 Q80 48 92 56 L-6 58 Z" fill="#0b0a10"/>
     <!-- arms to the keyboard -->
     <path d="M40 24 Q56 34 66 42" stroke="#06070a" stroke-width="7" stroke-linecap="round" fill="none"/>
     <!-- laptop: screen faces the statue -->
@@ -188,10 +189,10 @@
     <path d="M42 -3 Q43 4 39 9" stroke="#5eead4" stroke-opacity="0.45" stroke-width="1.5" fill="none"/>
   </g>
   <!-- what the screen says, floating like a thought -->
-  <g class="mono" font-size="12" fill="#99f6e4">
-    <line x1="752" y1="520" x2="784" y2="486" stroke="#5eead4" stroke-opacity="0.45"/>
-    <text x="790" y="480" opacity="0.95">✓ 106/106 tasks</text>
-    <text x="790" y="497" opacity="0.75">⏱ 35.3 h</text>
+  <g class="mono" font-size="16" fill="#ccfbf1">
+    <line x1="762" y1="492" x2="744" y2="440" stroke="#5eead4" stroke-opacity="0.6"/>
+    <text x="660" y="410" font-size="16" opacity="1">✓ 106/106 tasks</text>
+    <text x="660" y="432" font-size="16" opacity="0.85">⏱ 35.3 h</text>
   </g>
 
   <!-- vignette + grain -->
@@ -199,32 +200,32 @@
   <rect width="1280" height="640" filter="url(#grain)"/>
 
   <!-- ===== type ===== -->
-  <g class="sans" font-size="12" font-weight="600" letter-spacing="4" fill="#d6a46a">
-    <text x="64" y="104">ESTIMATES FOR AGENT-BUILT SOFTWARE</text>
+  <g class="sans" font-size="15" font-weight="700" letter-spacing="4" fill="#f6b46a">
+    <text x="64" y="96">ESTIMATES FOR AGENT-BUILT SOFTWARE</text>
   </g>
   <g class="serif" fill="#efe7da">
-    <text x="60" y="176" font-size="66" letter-spacing="-0.5">The Mythical</text>
-    <text x="60" y="248" font-size="66" letter-spacing="-0.5">Agent Month</text>
+    <text x="58" y="180" font-size="82" letter-spacing="-1">The Mythical</text>
+    <text x="58" y="266" font-size="82" letter-spacing="-1">Agent Month</text>
   </g>
-  <line x1="64" y1="282" x2="124" y2="282" stroke="#d6a46a" stroke-width="2"/>
-  <g class="serif" font-size="23" font-style="italic">
-    <text x="64" y="324" fill="#b8b2a8">The estimate was carved in stone: three months.</text>
-    <text x="64" y="358" fill="#7ee0cf">The agents shipped it in thirty-five hours.</text>
+  <line x1="64" y1="300" x2="134" y2="300" stroke="#f6b46a" stroke-width="3"/>
+  <g class="serif" font-size="28" font-style="italic">
+    <text x="64" y="346" fill="#e7ddd0">The estimate was carved in stone: three months.</text>
+    <text x="64" y="386" fill="#7ff0dc">The agents shipped it in thirty-five hours.</text>
   </g>
 
   <!-- stats -->
-  <g class="sans" font-size="11" font-weight="600" letter-spacing="2.5" fill="#8a8f98">
-    <text x="64" y="586">NAIVE ESTIMATE</text>
-    <text x="244" y="586">SKILL PREDICTED</text>
-    <text x="424" y="586">REAL RUN</text>
+  <g class="sans" font-size="13" font-weight="700" letter-spacing="2.5" fill="#c9c3cf">
+    <text x="64" y="566">NAIVE ESTIMATE</text>
+    <text x="264" y="566">SKILL PREDICTED</text>
+    <text x="464" y="566">REAL RUN</text>
   </g>
-  <g class="serif" font-size="24">
-    <text x="64" y="616" fill="#c9a6a0">3 months</text>
-    <line x1="62" y1="608" x2="162" y2="608" stroke="#c9a6a0" stroke-width="1.5"/>
-    <text x="244" y="616" fill="#efe7da">36.4 h</text>
-    <text x="424" y="616" fill="#7ee0cf">35.3 h</text>
+  <g class="serif" font-size="36">
+    <text x="64" y="610" fill="#f0a8a0">3 months</text>
+    <line x1="62" y1="598" x2="202" y2="598" stroke="#f0a8a0" stroke-width="2.5"/>
+    <text x="264" y="610" fill="#fbf6ee">36.4 h</text>
+    <text x="464" y="610" fill="#7ff0dc">35.3 h</text>
   </g>
-  <text x="1216" y="52" class="mono" font-size="13" fill="#6b7280" text-anchor="end">github.com/MedAdemBHA/mythical-agent-month</text>
+  <text x="1216" y="50" class="mono" font-size="15" fill="#c9c3cf" text-anchor="end">github.com/MedAdemBHA/mythical-agent-month</text>
 </svg>
 <script>
   // deterministic star field (seeded), denser toward the top, none near the horizon glow
