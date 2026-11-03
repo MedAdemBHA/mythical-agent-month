@@ -1,6 +1,6 @@
 # 🗿 Mythical Agent Month
 
-<p align="center"><img src="assets/hero.png" alt="The AI estimates 3 months; the developer's agents ship the 106-task roadmap in 35.3 hours" width="100%"></p>
+<p align="center"><img src="assets/hero.png" alt="A stone statue at dusk with 3 MONTHS carved and cracked into it; a developer at its foot shipped the 106-task roadmap in 35.3 hours" width="100%"></p>
 
 **Your agent said 5 months. Agents built it in 35 hours.**
 
