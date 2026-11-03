@@ -188,16 +188,39 @@
     <path d="M38 10 Q48 16 46 34" stroke="#5eead4" stroke-opacity="0.5" stroke-width="1.5" fill="none"/>
     <path d="M42 -3 Q43 4 39 9" stroke="#5eead4" stroke-opacity="0.45" stroke-width="1.5" fill="none"/>
   </g>
-  <!-- what the screen says, floating like a thought -->
-  <g class="mono" font-size="16" fill="#ccfbf1">
-    <line x1="762" y1="492" x2="744" y2="440" stroke="#5eead4" stroke-opacity="0.6"/>
-    <text x="660" y="410" font-size="16" opacity="1">✓ 106/106 tasks</text>
-    <text x="660" y="432" font-size="16" opacity="0.85">⏱ 35.3 h</text>
-  </g>
 
   <!-- vignette + grain -->
   <rect width="1280" height="640" fill="url(#vignette)"/>
   <rect width="1280" height="640" filter="url(#grain)"/>
+
+
+  <!-- ===== the conversation ===== -->
+  <g id="chat">
+    <!-- 1. the statue speaks -->
+    <g>
+      <rect x="548" y="150" width="318" height="88" rx="18" fill="#141523" fill-opacity="0.78" stroke="#f6b46a" stroke-opacity="0.55"/>
+      <path d="M858 238 L904 274 L834 238 Z" fill="#141523" fill-opacity="0.78"/>
+      <path d="M858 238 L904 274 L834 238" stroke="#f6b46a" stroke-opacity="0.55" fill="none"/>
+      <text x="570" y="176" class="sans" font-size="11" font-weight="700" letter-spacing="2.5" fill="#f6b46a">THE ESTIMATE</text>
+      <text x="570" y="216" class="serif" font-size="25" fill="#f3e9da">Realistically… <tspan font-style="italic" fill="#f6b46a">three months.</tspan></text>
+    </g>
+    <!-- 2. the developer answers -->
+    <g>
+      <rect x="548" y="256" width="318" height="126" rx="18" fill="#0d1f22" fill-opacity="0.8" stroke="#5eead4" stroke-opacity="0.55"/>
+      <path d="M612 382 L636 428 L648 382 Z" fill="#0d1f22" fill-opacity="0.8"/>
+      <path d="M612 382 L636 428 L648 382" stroke="#5eead4" stroke-opacity="0.55" fill="none"/>
+      <text x="570" y="282" class="sans" font-size="11" font-weight="700" letter-spacing="2.5" fill="#5eead4">YOU</text>
+      <text x="570" y="316" class="serif" font-size="25" fill="#f3e9da">Cute. 😏</text>
+      <text x="570" y="344" class="serif" font-size="22" font-style="italic" fill="#7ff0dc">My agents ship it tomorrow.</text>
+      <text x="570" y="368" class="mono" font-size="12.5" fill="#99f6e4" opacity="0.85">✓ 106/106 tasks  ·  ⏱ 35.3 h</text>
+    </g>
+    <!-- 3. the statue, quieter now -->
+    <g>
+      <rect x="722" y="404" width="148" height="40" rx="14" fill="#141523" fill-opacity="0.72" stroke="#f6b46a" stroke-opacity="0.4"/>
+      <path d="M870 418 L896 428 L868 432 Z" fill="#141523" fill-opacity="0.72"/>
+      <text x="740" y="430" class="serif" font-size="17" font-style="italic" fill="#f6b46a">…recalculating</text>
+    </g>
+  </g>
 
   <!-- ===== type ===== -->
   <g class="sans" font-size="15" font-weight="700" letter-spacing="4" fill="#f6b46a">
@@ -209,8 +232,8 @@
   </g>
   <line x1="64" y1="300" x2="134" y2="300" stroke="#f6b46a" stroke-width="3"/>
   <g class="serif" font-size="28" font-style="italic">
-    <text x="64" y="346" fill="#e7ddd0">The estimate was carved in stone: three months.</text>
-    <text x="64" y="386" fill="#7ff0dc">The agents shipped it in thirty-five hours.</text>
+    <text x="64" y="346" fill="#e7ddd0">Your agent estimates like it’s 1975.</text>
+    <text x="64" y="386" fill="#7ff0dc">This one learned from real runs.</text>
   </g>
 
   <!-- stats -->

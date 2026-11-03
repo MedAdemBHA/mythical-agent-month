@@ -1,6 +1,6 @@
 # 🗿 Mythical Agent Month
 
-<p align="center"><img src="assets/hero.webp" alt="A stone statue at dusk with 3 MONTHS carved and cracked into it; a developer at its foot shipped the 106-task roadmap in 35.3 hours" width="100%"></p>
+<p align="center"><img src="assets/hero.webp" alt="A stone statue at dusk says: Realistically… three months. The developer at its foot replies: Cute. My agents ship it tomorrow. 106/106 tasks, 35.3 h. The statue: …recalculating" width="100%"></p>
 
 **Your agent said 5 months. Agents built it in 35 hours.**
 
