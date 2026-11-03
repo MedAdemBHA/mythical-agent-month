@@ -1,0 +1,1589 @@
+{
+ "mode": "agent",
+ "note": "Anonymised shape of a real 106-task multi-repo SaaS build (7 repos, 9 phases). Real result: 35 h agent wall-clock.",
+ "machine": {
+  "parallel_agents": 6,
+  "effective_parallelism": 1.8,
+  "agent_hours_per_day": 20
+ },
+ "review": "high-risk",
+ "phase_checks": 20,
+ "human": {
+  "focus_hours_per_day": 6,
+  "review_minutes_per_task": 3,
+  "local_setup_hours": [
+   2,
+   3
+  ]
+ },
+ "usage": {
+  "weekly_pct_per_agent_hour": 0.6,
+  "weekly_pct_available": 60
+ },
+ "items": [
+  {
+   "id": "t001",
+   "task": "phase-0 / service-a / medium-risk task",
+   "size": "M",
+   "risk": "normal",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-0",
+   "depends_on": [],
+   "decisions": [
+    "d1"
+   ]
+  },
+  {
+   "id": "t002",
+   "task": "phase-0 / service-a / low-risk task",
+   "size": "S",
+   "risk": "low",
+   "model": "sonnet",
+   "repo": "service-a",
+   "phase": "phase-0",
+   "depends_on": [
+    "t001"
+   ]
+  },
+  {
+   "id": "t003",
+   "task": "phase-0 / docs / low-risk task",
+   "size": "M",
+   "risk": "low",
+   "model": "sonnet",
+   "repo": "docs",
+   "phase": "phase-0",
+   "depends_on": [
+    "t001",
+    "t002"
+   ]
+  },
+  {
+   "id": "t004",
+   "task": "phase-0 / docs / low-risk task",
+   "size": "M",
+   "risk": "low",
+   "model": "sonnet",
+   "repo": "docs",
+   "phase": "phase-0",
+   "depends_on": []
+  },
+  {
+   "id": "t005",
+   "task": "phase-0 / docs / medium-risk task",
+   "size": "S",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "docs",
+   "phase": "phase-0",
+   "depends_on": [
+    "t002",
+    "t003",
+    "t004"
+   ]
+  },
+  {
+   "id": "t006",
+   "task": "phase-0 / docs / medium-risk task",
+   "size": "XS",
+   "risk": "normal",
+   "model": "opus",
+   "repo": "docs",
+   "phase": "phase-0",
+   "depends_on": [
+    "t001"
+   ]
+  },
+  {
+   "id": "t007",
+   "task": "phase-0 / docs / high-risk task",
+   "size": "XS",
+   "risk": "high",
+   "model": "sonnet",
+   "repo": "docs",
+   "phase": "phase-0",
+   "depends_on": [
+    "t006"
+   ]
+  },
+  {
+   "id": "t008",
+   "task": "phase-0 / service-a / medium-risk task",
+   "size": "L",
+   "risk": "normal",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-0",
+   "depends_on": [
+    "t003",
+    "t005"
+   ]
+  },
+  {
+   "id": "t009",
+   "task": "phase-0 / service-b / medium-risk task",
+   "size": "M",
+   "risk": "normal",
+   "model": "opus",
+   "repo": "service-b",
+   "phase": "phase-0",
+   "depends_on": [
+    "t005",
+    "t008"
+   ]
+  },
+  {
+   "id": "t010",
+   "task": "phase-0 / service-a / medium-risk task",
+   "size": "L",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-a",
+   "phase": "phase-0",
+   "depends_on": [
+    "t005"
+   ]
+  },
+  {
+   "id": "t011",
+   "task": "phase-0 / service-b / low-risk task",
+   "size": "M",
+   "risk": "low",
+   "model": "sonnet",
+   "repo": "service-b",
+   "phase": "phase-0",
+   "depends_on": [
+    "t005",
+    "t010"
+   ]
+  },
+  {
+   "id": "t012",
+   "task": "phase-0 / service-c / low-risk task",
+   "size": "M",
+   "risk": "low",
+   "model": "sonnet",
+   "repo": "service-c",
+   "phase": "phase-0",
+   "depends_on": [
+    "t005",
+    "t011"
+   ]
+  },
+  {
+   "id": "t013",
+   "task": "phase-0 / service-a / medium-risk task",
+   "size": "M",
+   "risk": "normal",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-0",
+   "depends_on": [
+    "t005"
+   ]
+  },
+  {
+   "id": "t014",
+   "task": "phase-0 / service-a / high-risk task",
+   "size": "M",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-0",
+   "depends_on": [
+    "t005"
+   ]
+  },
+  {
+   "id": "t015",
+   "task": "phase-0 / service-a / medium-risk task",
+   "size": "S",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-a",
+   "phase": "phase-0",
+   "depends_on": [
+    "t014"
+   ]
+  },
+  {
+   "id": "t016",
+   "task": "phase-0 / service-a / high-risk task",
+   "size": "S",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-0",
+   "depends_on": [
+    "t015"
+   ]
+  },
+  {
+   "id": "t017",
+   "task": "phase-0 / docs / medium-risk task",
+   "size": "S",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "docs",
+   "phase": "phase-0",
+   "depends_on": [
+    "t001"
+   ]
+  },
+  {
+   "id": "t018",
+   "task": "phase-0 / service-b / medium-risk task",
+   "size": "M",
+   "risk": "normal",
+   "model": "opus",
+   "repo": "service-b",
+   "phase": "phase-0",
+   "depends_on": [
+    "t005"
+   ]
+  },
+  {
+   "id": "t019",
+   "task": "phase-0 / docs / medium-risk task",
+   "size": "S",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "docs",
+   "phase": "phase-0",
+   "depends_on": []
+  },
+  {
+   "id": "t020",
+   "task": "phase-0 / docs / medium-risk task",
+   "size": "S",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "docs",
+   "phase": "phase-0",
+   "depends_on": [
+    "t002",
+    "t003",
+    "t004",
+    "t005",
+    "t006",
+    "t008",
+    "t009",
+    "t010",
+    "t011",
+    "t012",
+    "t013",
+    "t014",
+    "t015",
+    "t018",
+    "t019"
+   ]
+  },
+  {
+   "id": "t021",
+   "task": "phase-1 / service-a / low-risk task",
+   "size": "M",
+   "risk": "low",
+   "model": "sonnet",
+   "repo": "service-a",
+   "phase": "phase-1",
+   "depends_on": [
+    "t001",
+    "t020"
+   ]
+  },
+  {
+   "id": "t022",
+   "task": "phase-1 / service-a / low-risk task",
+   "size": "S",
+   "risk": "low",
+   "model": "sonnet",
+   "repo": "service-a",
+   "phase": "phase-1",
+   "depends_on": [
+    "t008",
+    "t020"
+   ]
+  },
+  {
+   "id": "t023",
+   "task": "phase-1 / service-a / high-risk task",
+   "size": "M",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-1",
+   "depends_on": [
+    "t008",
+    "t009",
+    "t022"
+   ]
+  },
+  {
+   "id": "t024",
+   "task": "phase-1 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-1",
+   "depends_on": [
+    "t008",
+    "t009",
+    "t022"
+   ]
+  },
+  {
+   "id": "t025",
+   "task": "phase-1 / service-a / medium-risk task",
+   "size": "M",
+   "risk": "normal",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-1",
+   "depends_on": [
+    "t008",
+    "t009",
+    "t022"
+   ]
+  },
+  {
+   "id": "t026",
+   "task": "phase-1 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-1",
+   "depends_on": [
+    "t001",
+    "t023",
+    "t024"
+   ]
+  },
+  {
+   "id": "t027",
+   "task": "phase-1 / service-b / medium-risk task",
+   "size": "S",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-b",
+   "phase": "phase-1",
+   "depends_on": [
+    "t023"
+   ]
+  },
+  {
+   "id": "t028",
+   "task": "phase-1 / service-b / medium-risk task",
+   "size": "M",
+   "risk": "normal",
+   "model": "opus",
+   "repo": "service-b",
+   "phase": "phase-1",
+   "depends_on": [
+    "t024",
+    "t026"
+   ]
+  },
+  {
+   "id": "t029",
+   "task": "phase-1 / service-b / medium-risk task",
+   "size": "S",
+   "risk": "normal",
+   "model": "opus",
+   "repo": "service-b",
+   "phase": "phase-1",
+   "depends_on": []
+  },
+  {
+   "id": "t030",
+   "task": "phase-1 / service-c / medium-risk task",
+   "size": "S",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-c",
+   "phase": "phase-1",
+   "depends_on": [
+    "t012",
+    "t023"
+   ]
+  },
+  {
+   "id": "t031",
+   "task": "phase-1 / service-c / medium-risk task",
+   "size": "M",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-c",
+   "phase": "phase-1",
+   "depends_on": [
+    "t021"
+   ]
+  },
+  {
+   "id": "t032",
+   "task": "phase-1 / service-c / medium-risk task",
+   "size": "S",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-c",
+   "phase": "phase-1",
+   "depends_on": []
+  },
+  {
+   "id": "t033",
+   "task": "phase-1 / service-d / medium-risk task",
+   "size": "M",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-d",
+   "phase": "phase-1",
+   "depends_on": []
+  },
+  {
+   "id": "t034",
+   "task": "phase-1 / service-e / medium-risk task",
+   "size": "S",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-e",
+   "phase": "phase-1",
+   "depends_on": []
+  },
+  {
+   "id": "t035",
+   "task": "phase-1 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-1",
+   "depends_on": [
+    "t013",
+    "t014",
+    "t015",
+    "t021"
+   ]
+  },
+  {
+   "id": "t036",
+   "task": "phase-1 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-1",
+   "depends_on": [
+    "t035"
+   ]
+  },
+  {
+   "id": "t037",
+   "task": "phase-1 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-1",
+   "depends_on": [
+    "t001",
+    "t013",
+    "t014",
+    "t015",
+    "t036"
+   ]
+  },
+  {
+   "id": "t038",
+   "task": "phase-1 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-1",
+   "depends_on": [
+    "t001",
+    "t008",
+    "t009",
+    "t010",
+    "t011",
+    "t012",
+    "t022"
+   ]
+  },
+  {
+   "id": "t039",
+   "task": "phase-1 / service-c / medium-risk task",
+   "size": "S",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-c",
+   "phase": "phase-1",
+   "depends_on": [
+    "t036"
+   ]
+  },
+  {
+   "id": "t040",
+   "task": "phase-1 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-1",
+   "depends_on": [
+    "t008",
+    "t009",
+    "t010",
+    "t011",
+    "t012",
+    "t013",
+    "t014",
+    "t015",
+    "t021",
+    "t035"
+   ]
+  },
+  {
+   "id": "t041",
+   "task": "phase-1 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-1",
+   "depends_on": [
+    "t040"
+   ]
+  },
+  {
+   "id": "t042",
+   "task": "phase-1 / service-a / low-risk task",
+   "size": "XS",
+   "risk": "low",
+   "model": "sonnet",
+   "repo": "service-a",
+   "phase": "phase-1",
+   "depends_on": [
+    "t017",
+    "t040",
+    "t041"
+   ]
+  },
+  {
+   "id": "t043",
+   "task": "phase-1 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-1",
+   "depends_on": [
+    "t008",
+    "t009",
+    "t013",
+    "t014",
+    "t015",
+    "t035",
+    "t036",
+    "t040"
+   ]
+  },
+  {
+   "id": "t044",
+   "task": "phase-1 / service-a / medium-risk task",
+   "size": "L",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-a",
+   "phase": "phase-1",
+   "depends_on": [
+    "t041",
+    "t043",
+    "t040",
+    "t036",
+    "t026",
+    "t038"
+   ]
+  },
+  {
+   "id": "t045",
+   "task": "phase-1 / service-c / medium-risk task",
+   "size": "L",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-c",
+   "phase": "phase-1",
+   "depends_on": [
+    "t040",
+    "t043",
+    "t026",
+    "t038",
+    "t044"
+   ]
+  },
+  {
+   "id": "t046",
+   "task": "phase-1 / service-b / low-risk task",
+   "size": "XS",
+   "risk": "low",
+   "model": "sonnet",
+   "repo": "service-b",
+   "phase": "phase-1",
+   "depends_on": [
+    "t026",
+    "t038",
+    "t043",
+    "t044"
+   ]
+  },
+  {
+   "id": "t047",
+   "task": "phase-1 / docs / low-risk task",
+   "size": "XS",
+   "risk": "low",
+   "model": "sonnet",
+   "repo": "docs",
+   "phase": "phase-1",
+   "depends_on": [
+    "t040",
+    "t042",
+    "t043"
+   ]
+  },
+  {
+   "id": "t048",
+   "task": "phase-1 / docs / low-risk task",
+   "size": "XS",
+   "risk": "low",
+   "model": "sonnet",
+   "repo": "docs",
+   "phase": "phase-1",
+   "depends_on": [
+    "t044"
+   ]
+  },
+  {
+   "id": "t049",
+   "task": "phase-1 / docs / medium-risk task",
+   "size": "XS",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "docs",
+   "phase": "phase-1",
+   "depends_on": [
+    "t024",
+    "t025",
+    "t026",
+    "t027",
+    "t028",
+    "t029",
+    "t030",
+    "t031",
+    "t032",
+    "t033",
+    "t034",
+    "t035",
+    "t036",
+    "t037",
+    "t038",
+    "t039",
+    "t040",
+    "t041",
+    "t043",
+    "t044",
+    "t045",
+    "t046",
+    "t048"
+   ]
+  },
+  {
+   "id": "t050",
+   "task": "phase-1 / docs / medium-risk task",
+   "size": "XS",
+   "risk": "normal",
+   "model": "opus",
+   "repo": "docs",
+   "phase": "phase-1",
+   "depends_on": [
+    "t048",
+    "t049"
+   ]
+  },
+  {
+   "id": "t051",
+   "task": "phase-1 / service-c / medium-risk task",
+   "size": "XS",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-c",
+   "phase": "phase-1",
+   "depends_on": [
+    "t036",
+    "t037"
+   ]
+  },
+  {
+   "id": "t052",
+   "task": "phase-2 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-2",
+   "depends_on": [
+    "t008",
+    "t043",
+    "t050",
+    "t022",
+    "t024",
+    "t025",
+    "t026",
+    "t028",
+    "t044",
+    "t049"
+   ]
+  },
+  {
+   "id": "t053",
+   "task": "phase-2 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-2",
+   "depends_on": [
+    "t008",
+    "t009",
+    "t052",
+    "t043",
+    "t044",
+    "t049",
+    "t050",
+    "t013",
+    "t014",
+    "t015"
+   ]
+  },
+  {
+   "id": "t054",
+   "task": "phase-2 / service-b / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-b",
+   "phase": "phase-2",
+   "depends_on": [
+    "t052",
+    "t008",
+    "t009",
+    "t013",
+    "t014",
+    "t015",
+    "t017",
+    "t053"
+   ]
+  },
+  {
+   "id": "t055",
+   "task": "phase-2 / service-f / medium-risk task",
+   "size": "L",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-f",
+   "phase": "phase-2",
+   "depends_on": [
+    "t053"
+   ]
+  },
+  {
+   "id": "t056",
+   "task": "phase-2 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-2",
+   "depends_on": [
+    "t053",
+    "t055",
+    "t054"
+   ]
+  },
+  {
+   "id": "t057",
+   "task": "phase-2 / docs / high-risk task",
+   "size": "S",
+   "risk": "high",
+   "model": "sonnet",
+   "repo": "docs",
+   "phase": "phase-2",
+   "depends_on": [
+    "t052",
+    "t053",
+    "t055",
+    "t054",
+    "t056"
+   ]
+  },
+  {
+   "id": "t058",
+   "task": "phase-3 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-3",
+   "depends_on": [
+    "t008",
+    "t009",
+    "t010",
+    "t011",
+    "t012",
+    "t052",
+    "t053",
+    "t054",
+    "t057"
+   ]
+  },
+  {
+   "id": "t059",
+   "task": "phase-3 / service-a / medium-risk task",
+   "size": "L",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-a",
+   "phase": "phase-3",
+   "depends_on": [
+    "t058",
+    "t057"
+   ]
+  },
+  {
+   "id": "t060",
+   "task": "phase-3 / service-b / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-b",
+   "phase": "phase-3",
+   "depends_on": [
+    "t008",
+    "t009",
+    "t054",
+    "t059",
+    "t011",
+    "t052",
+    "t018"
+   ]
+  },
+  {
+   "id": "t061",
+   "task": "phase-3 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-3",
+   "depends_on": [
+    "t008",
+    "t009",
+    "t040",
+    "t041",
+    "t043",
+    "t044",
+    "t052",
+    "t053",
+    "t054",
+    "t058",
+    "t059",
+    "t060",
+    "t057",
+    "t022",
+    "t025",
+    "t034",
+    "t055",
+    "t056"
+   ]
+  },
+  {
+   "id": "t062",
+   "task": "phase-3 / service-c / medium-risk task",
+   "size": "L",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-c",
+   "phase": "phase-3",
+   "depends_on": [
+    "t021",
+    "t031",
+    "t052",
+    "t053",
+    "t054",
+    "t061",
+    "t058"
+   ]
+  },
+  {
+   "id": "t063",
+   "task": "phase-3 / service-d / medium-risk task",
+   "size": "M",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-d",
+   "phase": "phase-3",
+   "depends_on": [
+    "t058"
+   ]
+  },
+  {
+   "id": "t064",
+   "task": "phase-3 / service-a / high-risk task",
+   "size": "S",
+   "risk": "high",
+   "model": "sonnet",
+   "repo": "service-a",
+   "phase": "phase-3",
+   "depends_on": [
+    "t014",
+    "t015",
+    "t017",
+    "t058",
+    "t059",
+    "t060",
+    "t061",
+    "t062",
+    "t063",
+    "t018"
+   ]
+  },
+  {
+   "id": "t065",
+   "task": "phase-3 / service-b / low-risk task",
+   "size": "XS",
+   "risk": "low",
+   "model": "sonnet",
+   "repo": "service-b",
+   "phase": "phase-3",
+   "depends_on": [
+    "t064"
+   ]
+  },
+  {
+   "id": "t066",
+   "task": "phase-3 / docs / medium-risk task",
+   "size": "S",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "docs",
+   "phase": "phase-3",
+   "depends_on": [
+    "t058",
+    "t059",
+    "t060",
+    "t061",
+    "t064",
+    "t062",
+    "t063"
+   ]
+  },
+  {
+   "id": "t067",
+   "task": "phase-4 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-4",
+   "depends_on": [
+    "t050"
+   ]
+  },
+  {
+   "id": "t068",
+   "task": "phase-4 / service-b / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-b",
+   "phase": "phase-4",
+   "depends_on": [
+    "t022",
+    "t024",
+    "t025",
+    "t026",
+    "t028",
+    "t050"
+   ]
+  },
+  {
+   "id": "t069",
+   "task": "phase-4 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-4",
+   "depends_on": [
+    "t022",
+    "t024",
+    "t025",
+    "t026",
+    "t028",
+    "t067",
+    "t068",
+    "t008",
+    "t009",
+    "t035",
+    "t036",
+    "t043",
+    "t044",
+    "t049",
+    "t050",
+    "t058"
+   ]
+  },
+  {
+   "id": "t070",
+   "task": "phase-4 / service-b / medium-risk task",
+   "size": "S",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-b",
+   "phase": "phase-4",
+   "depends_on": [
+    "t068",
+    "t069"
+   ]
+  },
+  {
+   "id": "t071",
+   "task": "phase-4 / service-c / medium-risk task",
+   "size": "M",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-c",
+   "phase": "phase-4",
+   "depends_on": [
+    "t023",
+    "t030",
+    "t032",
+    "t043",
+    "t045",
+    "t050",
+    "t069"
+   ]
+  },
+  {
+   "id": "t072",
+   "task": "phase-4 / service-a / medium-risk task",
+   "size": "M",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-a",
+   "phase": "phase-4",
+   "depends_on": [
+    "t069",
+    "t070",
+    "t071"
+   ]
+  },
+  {
+   "id": "t073",
+   "task": "phase-4 / service-b / low-risk task",
+   "size": "S",
+   "risk": "low",
+   "model": "sonnet",
+   "repo": "service-b",
+   "phase": "phase-4",
+   "depends_on": [
+    "t072"
+   ]
+  },
+  {
+   "id": "t074",
+   "task": "phase-4 / docs / high-risk task",
+   "size": "S",
+   "risk": "high",
+   "model": "sonnet",
+   "repo": "docs",
+   "phase": "phase-4",
+   "depends_on": [
+    "t069",
+    "t070",
+    "t071",
+    "t072",
+    "t073"
+   ]
+  },
+  {
+   "id": "t075",
+   "task": "phase-4 / service-f / low-risk task",
+   "size": "S",
+   "risk": "low",
+   "model": "sonnet",
+   "repo": "service-f",
+   "phase": "phase-4",
+   "depends_on": [
+    "t069"
+   ]
+  },
+  {
+   "id": "t076",
+   "task": "phase-5 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-5",
+   "depends_on": [
+    "t066",
+    "t074",
+    "t050",
+    "t057"
+   ]
+  },
+  {
+   "id": "t077",
+   "task": "phase-5 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-5",
+   "depends_on": [
+    "t057",
+    "t066",
+    "t050"
+   ]
+  },
+  {
+   "id": "t078",
+   "task": "phase-5 / service-b / medium-risk task",
+   "size": "L",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-b",
+   "phase": "phase-5",
+   "depends_on": [
+    "t066",
+    "t076",
+    "t077",
+    "t020"
+   ]
+  },
+  {
+   "id": "t079",
+   "task": "phase-5 / service-f / medium-risk task",
+   "size": "L",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-f",
+   "phase": "phase-5",
+   "depends_on": [
+    "t076",
+    "t077"
+   ]
+  },
+  {
+   "id": "t080",
+   "task": "phase-5 / service-c / low-risk task",
+   "size": "M",
+   "risk": "low",
+   "model": "sonnet",
+   "repo": "service-c",
+   "phase": "phase-5",
+   "depends_on": [
+    "t066",
+    "t077"
+   ]
+  },
+  {
+   "id": "t081",
+   "task": "phase-5 / docs / high-risk task",
+   "size": "XS",
+   "risk": "high",
+   "model": "opus",
+   "repo": "docs",
+   "phase": "phase-5",
+   "depends_on": [
+    "t077",
+    "t079"
+   ]
+  },
+  {
+   "id": "t082",
+   "task": "phase-5 / service-a / low-risk task",
+   "size": "XS",
+   "risk": "low",
+   "model": "sonnet",
+   "repo": "service-a",
+   "phase": "phase-5",
+   "depends_on": [
+    "t020",
+    "t078"
+   ]
+  },
+  {
+   "id": "t083",
+   "task": "phase-5 / docs / medium-risk task",
+   "size": "XS",
+   "risk": "normal",
+   "model": "opus",
+   "repo": "docs",
+   "phase": "phase-5",
+   "depends_on": [
+    "t076",
+    "t078",
+    "t077",
+    "t079",
+    "t080",
+    "t081",
+    "t082"
+   ]
+  },
+  {
+   "id": "t084",
+   "task": "phase-6 / service-a / medium-risk task",
+   "size": "L",
+   "risk": "normal",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-6",
+   "depends_on": [
+    "t020",
+    "t066",
+    "t057",
+    "t058",
+    "t061",
+    "t062"
+   ]
+  },
+  {
+   "id": "t085",
+   "task": "phase-6 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-6",
+   "depends_on": [
+    "t050",
+    "t084",
+    "t057",
+    "t058",
+    "t061"
+   ]
+  },
+  {
+   "id": "t086",
+   "task": "phase-6 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-6",
+   "depends_on": [
+    "t084",
+    "t085",
+    "t057"
+   ]
+  },
+  {
+   "id": "t087",
+   "task": "phase-6 / service-c / low-risk task",
+   "size": "M",
+   "risk": "low",
+   "model": "sonnet",
+   "repo": "service-c",
+   "phase": "phase-6",
+   "depends_on": [
+    "t058",
+    "t061",
+    "t062",
+    "t063",
+    "t085",
+    "t086"
+   ]
+  },
+  {
+   "id": "t088",
+   "task": "phase-6 / service-b / medium-risk task",
+   "size": "S",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-b",
+   "phase": "phase-6",
+   "depends_on": [
+    "t060",
+    "t061",
+    "t086"
+   ]
+  },
+  {
+   "id": "t089",
+   "task": "phase-6 / service-f / low-risk task",
+   "size": "L",
+   "risk": "low",
+   "model": "sonnet",
+   "repo": "service-f",
+   "phase": "phase-6",
+   "depends_on": [
+    "t057",
+    "t084",
+    "t085",
+    "t086"
+   ]
+  },
+  {
+   "id": "t090",
+   "task": "phase-6 / service-a / high-risk task",
+   "size": "S",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-6",
+   "depends_on": [
+    "t084",
+    "t085"
+   ]
+  },
+  {
+   "id": "t091",
+   "task": "phase-6 / docs / high-risk task",
+   "size": "S",
+   "risk": "high",
+   "model": "sonnet",
+   "repo": "docs",
+   "phase": "phase-6",
+   "depends_on": [
+    "t084",
+    "t085",
+    "t089",
+    "t086"
+   ]
+  },
+  {
+   "id": "t092",
+   "task": "phase-7 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-7",
+   "depends_on": [
+    "t050"
+   ]
+  },
+  {
+   "id": "t093",
+   "task": "phase-7 / service-f / low-risk task",
+   "size": "L",
+   "risk": "low",
+   "model": "sonnet",
+   "repo": "service-f",
+   "phase": "phase-7",
+   "depends_on": [
+    "t092"
+   ]
+  },
+  {
+   "id": "t094",
+   "task": "phase-7 / service-b / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-b",
+   "phase": "phase-7",
+   "depends_on": [
+    "t092"
+   ]
+  },
+  {
+   "id": "t095",
+   "task": "phase-7 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-7",
+   "depends_on": [
+    "t092"
+   ]
+  },
+  {
+   "id": "t096",
+   "task": "phase-7 / service-d / low-risk task",
+   "size": "S",
+   "risk": "low",
+   "model": "sonnet",
+   "repo": "service-d",
+   "phase": "phase-7",
+   "depends_on": [
+    "t095"
+   ]
+  },
+  {
+   "id": "t097",
+   "task": "phase-7 / service-c / medium-risk task",
+   "size": "M",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-c",
+   "phase": "phase-7",
+   "depends_on": [
+    "t092"
+   ]
+  },
+  {
+   "id": "t098",
+   "task": "phase-7 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-7",
+   "depends_on": [
+    "t092",
+    "t095",
+    "t074"
+   ]
+  },
+  {
+   "id": "t099",
+   "task": "phase-7 / service-c / low-risk task",
+   "size": "M",
+   "risk": "low",
+   "model": "sonnet",
+   "repo": "service-c",
+   "phase": "phase-7",
+   "depends_on": [
+    "t098"
+   ]
+  },
+  {
+   "id": "t100",
+   "task": "phase-7 / service-b / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-b",
+   "phase": "phase-7",
+   "depends_on": [
+    "t074",
+    "t098"
+   ]
+  },
+  {
+   "id": "t101",
+   "task": "phase-7 / service-a / high-risk task",
+   "size": "L",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-7",
+   "depends_on": [
+    "t098",
+    "t100"
+   ]
+  },
+  {
+   "id": "t102",
+   "task": "phase-7 / service-f / medium-risk task",
+   "size": "L",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-f",
+   "phase": "phase-7",
+   "depends_on": [
+    "t098",
+    "t101"
+   ]
+  },
+  {
+   "id": "t103",
+   "task": "phase-7 / service-a / medium-risk task",
+   "size": "M",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-a",
+   "phase": "phase-7",
+   "depends_on": [
+    "t100",
+    "t101",
+    "t102",
+    "t095",
+    "t098"
+   ]
+  },
+  {
+   "id": "t104",
+   "task": "phase-7 / docs / medium-risk task",
+   "size": "XS",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "docs",
+   "phase": "phase-7",
+   "depends_on": [
+    "t093",
+    "t092",
+    "t094",
+    "t095",
+    "t096",
+    "t097",
+    "t098",
+    "t099",
+    "t102",
+    "t103"
+   ]
+  },
+  {
+   "id": "t105",
+   "task": "phase-8 / service-a / medium-risk task",
+   "size": "M",
+   "risk": "normal",
+   "model": "sonnet",
+   "repo": "service-a",
+   "phase": "phase-8",
+   "depends_on": [
+    "t020"
+   ]
+  },
+  {
+   "id": "t106",
+   "task": "phase-8 / service-a / high-risk task",
+   "size": "M",
+   "risk": "high",
+   "model": "opus",
+   "repo": "service-a",
+   "phase": "phase-8",
+   "depends_on": [
+    "t105"
+   ],
+   "decisions": [
+    "d2"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "d1",
+   "question": "Which plan limits apply to each tier?",
+   "owner": "product owner",
+   "wait_days": [
+    0.5,
+    2
+   ]
+  },
+  {
+   "id": "d2",
+   "question": "Who runs the production migrations, and when?",
+   "owner": "client",
+   "wait_days": [
+    1,
+    3
+   ]
+  }
+ ]
+}
