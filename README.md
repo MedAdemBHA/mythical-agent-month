@@ -4,7 +4,7 @@
 
 **Your agent said 5 months. Agents built it in 35 hours.**
 
-An estimation skill for Claude Code (and a paste-in prompt for any other assistant) that stops AI from quoting human-team timelines for agent-built software.
+An estimation skill for Claude Code, Codex, Cursor, Gemini CLI and Copilot (plus a paste-in prompt for anything else) that stops AI from quoting human-team timelines for agent-built software.
 
 > Brooks, 1975: *"Adding manpower to a late software project makes it later."*
 > 2026: your agent still estimates like it's 1975.
@@ -67,19 +67,31 @@ The full case study, with the incidents and what each one cost, is in [`referenc
 
 ## Install
 
-**Claude Code** (personal skill, all projects):
+It works with **any agent that supports the open [Agent Skills](https://agentskills.io) standard** (`SKILL.md`). One line:
 
 ```bash
-git clone https://github.com/MedAdemBHA/mythical-agent-month.git
-mkdir -p ~/.claude/skills
-cp -r mythical-agent-month/skills/mythical-agent-month ~/.claude/skills/
+curl -fsSL https://raw.githubusercontent.com/MedAdemBHA/mythical-agent-month/main/install.sh | bash -s -- all
 ```
 
-Per project: copy it into `.claude/skills/` instead. Claude picks it up when you ask "how long will this take?", "estimate this backlog", "how long will this workflow run?", or paste an estimate to check.
+Or choose your agents, and add `--project` to install into the current repo instead of your home folder:
 
-**claude.ai:** upload `mythical-agent-month.skill` from [Releases](../../releases) under Settings → Capabilities → Skills.
+```bash
+./install.sh claude codex --project
+```
 
-**Any other assistant** (ChatGPT, Gemini, Cursor rules): paste [`assets/portable-prompt.md`](skills/mythical-agent-month/assets/portable-prompt.md).
+| Agent | Personal folder | Project folder |
+|---|---|---|
+| Claude Code | `~/.claude/skills/` | `.claude/skills/` |
+| OpenAI Codex | `~/.agents/skills/` | `.agents/skills/` |
+| Cursor | `~/.cursor/skills/` | `.cursor/skills/` |
+| Gemini CLI | `~/.gemini/skills/` | `.gemini/skills/` |
+| GitHub Copilot (VS Code) | `~/.copilot/skills/` | `.github/skills/` |
+| claude.ai | upload `mythical-agent-month.skill` from [Releases](../../releases) in Settings → Capabilities → Skills | |
+| Anything else (ChatGPT, Windsurf, custom agents) | paste [`portable-prompt.md`](skills/mythical-agent-month/assets/portable-prompt.md) into rules or the system prompt | |
+
+Any other tool that reads `SKILL.md`: copy `skills/mythical-agent-month/` into its skills folder. The scripts need only Python 3.
+
+Then just ask: *"how long will this take?"*, *"estimate this backlog"*, *"how long will this workflow run?"*, or paste an estimate to check.
 
 ## Try it
 
@@ -135,6 +147,7 @@ skills/mythical-agent-month/
   scripts/calibrate.py      read your agent transcripts, get your own numbers
   assets/portable-prompt.md paste-in version for any assistant
 examples/                   inputs + generated outputs
+install.sh                  installer for every supported agent
 assets/hero.html            source of the banner (render: headless Chrome, 1280x640 @2x)
 ```
 
