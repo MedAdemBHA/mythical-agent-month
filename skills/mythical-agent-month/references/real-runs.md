@@ -35,20 +35,27 @@ Reference cases with measured numbers. Add your own: one section per run, in the
 | Phase checks + final reviews | 50 runs, 7.6 h |
 | Fix-up / orchestration agents | 25 runs, 5.2 h |
 | Retries | 8-13% of tasks needed a second try |
-| Critical path (estimated) | ~22 h over 32 tasks |
+| Critical path (model) | ~19 h over 32 tasks |
 | Usage | ~35-40% of one weekly limit |
 | Human after the build | ~3 h: migrations, seed data, test logins, 2 bug fixes |
 
-**What a naive AI estimate said:** "about 5 months", i.e. 60-100 working days. The skill's own no-AI comparison line for this graph: ~134 days for a team of 4.
+**What a naive AI estimate said:** "about 5 months", i.e. 60-100 working days.
 
-**What this skill predicts** from the same task graph (`examples/roadmap-106-tasks.json`):
+**How well the model fits, honestly:**
 
-- 65.5 agent-hours;
-- **36.4 h wall-clock**;
-- ~39% of a weekly limit;
-- 3-6 calendar days to ready-to-merge.
+| Test | What it means | Agent-hours | Wall-clock |
+|------|---------------|-------------|------------|
+| In-sample fit | defaults measured on this whole run, then run on its own task graph (`examples/roadmap-106-tasks.json`) | 55.9 vs 64.2 real (**-13%**) | 31.1 h vs 35.3 h real (**-12%**) |
+| **Held-out** | tables, risk multipliers, tax and parallelism fit on phases 0-3 only (66 tasks), then predict phases 4-9 (40 tasks) blind | 20.9 vs 27.6 real (**-24%**) | 12.4 h vs 19.8 h real (**-37%**) |
 
-The real run: 64.2 agent-hours, 35.3 h busy wall-clock.
+The in-sample row is a fit, not a prediction. The held-out row is the honest number, and it's still the same project, laptop and setup. Two things drove the miss:
+
+- later phases were slower per task;
+- effective parallelism fell from 1.7 to 1.4 as disk pressure, Docker restarts and usage brakes piled up.
+
+The model leans optimistic. Plan on the upper half of its range until you have your own run. Method and numbers: `examples/holdout.md`.
+
+**A second, independent run is the missing evidence.** If you run `scripts/calibrate.py` on your own build, please add it here.
 
 **Incidents and what they cost:**
 

@@ -14,6 +14,8 @@ Starting numbers only. Replace them with your own as soon as you have 5-10 finis
 
 ## Mode A: developer + AI, hours
 
+**Not measured.** These tables are inherited starting points, not data from a real run. Calibrate them after 5-10 tasks (see `calibration.md`).
+
 Build with AI = prompting, reading the generated code, fixing and wiring it in. Not typing time.
 
 | Size | Build [low, likely, high] h |
@@ -31,16 +33,18 @@ Risk buffer on build + test: 10% when well known, 25% normal, 50% for many unkno
 
 ## Mode B: autonomous agents, minutes per task
 
-**Measured on 398 real agent runs** (see `real-runs.md`). Each figure includes the agent's own gate tests: unit tests plus tests related to the changed files.
+**Measured on one run of 398 agent runs** (see `real-runs.md`): [p25, median, p90] of real-work code runs, normalised to normal risk. Each figure includes the agent's own gate tests (unit + related). They are not hand-tuned, but they all come from one project. In a held-out test they came out 24-37% low (see below).
 
 | Size | Agent minutes, normal risk [low, likely, high] |
 |------|-----------------------------------------------|
-| XS | 2 / 5 / 12 |
-| S | 4 / 10 / 22 |
-| M | 6 / 15 / 32 |
-| L | 10 / 22 / 45 |
+| XS | 2 / 4 / 15 |
+| S | 3 / 5 / 25 |
+| M | 5 / 10 / 35 |
+| L | 7 / 12 / 40 |
 
-Risk multiplier: low 0.4 · normal 1.0 · high 2.0. The real medians were 0.3× and 2.7× of normal; high-risk tasks run more tests and get a bigger model that reads more.
+Risk multiplier: low **0.3** · normal 1.0 · high **2.7**, the measured medians. High-risk tasks run more tests and get a bigger model that reads more.
+
+**Size was a weak signal in run 1; risk was the strong one.** With size taken from the count of non-test files, medians barely moved from S to L, but high risk was 2.7× normal. If you have no better size signal, get risk right first.
 
 | Agent kind | Real median | p75 | Max | Use |
 |------------|-------------|-----|-----|-----|
@@ -49,7 +53,7 @@ Risk multiplier: low 0.4 · normal 1.0 · high 2.0. The real medians were 0.3× 
 | Code, low risk (small model) | 3.5 min | 8 | 56 | |
 | Reviewer agent (big model) | 8 min | 12 | 26 | [4, 8, 26] per reviewed task |
 | Merge (scripted / small model) | <1 min | <1 | 28 | 1 min per task |
-| Phase check (full suites + fix) | 4 min | 20 | 89 | 20 min per check |
+| Phase check (full suites + fix) | 4 min | 20 | 89 | 12 min per check (the mean) |
 
 The long tail is real: about 1 task in 10 takes 3× the median. Ranges matter more than medians.
 
@@ -72,7 +76,8 @@ Gate tests are usually most of an agent's minutes. Rough model: **suites run × 
   - merge locks per repo;
   - phase gates (everything waits for the slowest task in the phase);
   - usage brakes.
-- **Wall-clock = max(critical path, agent-hours ÷ effective parallelism).** If the critical path wins, split critical tasks; more agents won't help.
+- **Wall-clock = max(critical path + phase checks, agent-hours ÷ effective parallelism).** If the critical path wins, split critical tasks; more agents won't help.
+- Effective parallelism also drops late in a long run: in run 1 it was 1.7 for phases 0-3 and 1.4 for phases 4-9 (disk pressure, Docker restarts, usage brakes).
 
 ### Failure tax
 
@@ -110,4 +115,4 @@ Batch decisions into one session before the run. Agents can build with an ASSUME
 
 ## No-AI comparison
 
-Build × 2 + test (high-risk test × 1.5, not × 2.5), + 20% coordination ÷ 6 focus hours. Show solo and for a team of 4. It's a comparison line, never the estimate.
+From size and risk only, never from the AI-assisted hours in the input: (mode A build × 3 + mode A test × 1.5) × 1.2 coordination ÷ 6 focus hours. Both modes use this same baseline, so the same task list gives the same number. Show solo and for a team of 4. It's a comparison line, never the estimate.

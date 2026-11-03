@@ -1,6 +1,6 @@
 ---
 name: mythical-agent-month
-description: Realistic software estimates for work built with AI coding agents (Claude Code, Codex, Cursor, subagents, multi-agent workflows). Stops the "60-100 days" human-team guess by separating agent wall-clock, human effort, waiting on decisions and usage budget, using numbers measured on real agent runs. Use whenever the user asks how long something will take, wants an estimate, timeline, sprint plan, roadmap sizing, work days or story points, asks how long an autonomous agent build or workflow will run, how much usage it will cost, or pastes an estimate (from an AI or a team) and wants it checked, even if they don't say "estimate".
+description: Realistic estimates for software built with AI coding agents or an AI assistant (Claude Code, Codex, Cursor, subagents, multi-agent workflows). Stops the "60-100 days" human-team guess by separating agent wall-clock, human effort, waiting on decisions and usage budget, seeded from measured agent runs. Use when the user asks how long work will take, wants a timeline or roadmap sizing, asks how long an agent build or workflow will run or how much usage it will cost, or wants an AI-made estimate checked, and the work will be done with AI agents or an AI assistant. Not for teams estimating work done without AI.
 ---
 
 # Mythical Agent Month
@@ -16,6 +16,8 @@ So never give one big number. Separate:
 ## Step 1: Pick the mode
 
 Pick it from context. Ask only if it's unclear and the answer changes the result a lot.
+
+**First check this skill applies.** If a human team will do the work without AI agents or assistants (classic sprint planning, story points for a team), human pace is the right pace: give a normal estimate, say this skill doesn't apply, and stop here.
 
 - **Mode A, Developer + AI**: a person drives an assistant task by task (chat, pair-programming, one agent at a time). Output is in focus hours and days.
 - **Mode B, Autonomous agent build**: a plan is split into tasks that agents build on their own, often in parallel (worktrees, lanes, a workflow script, an overnight run). Output is agent wall-clock, usage cost and the human calendar around it.
@@ -59,10 +61,10 @@ If you can run Python, write the tasks as JSON and run `scripts/totals.py <file>
   - calendar = effort days, plus the longest decision wait (batched) or the sum of waits (one by one).
 - **Mode B**:
   - agent-hours = Σ (task minutes + reviewer minutes + merge) × (1 + failure tax) + phase checks;
-  - wall-clock = max(critical path, agent-hours ÷ effective parallelism);
+  - wall-clock = max(critical path + phase checks, agent-hours ÷ effective parallelism);
   - calendar to ready-to-merge = wall-clock ÷ agent hours per day + human hours ÷ focus hours + decision waits + usage-reset waits;
   - usage = agent-hours × % per agent-hour. If it's above what's left this week, add the days until the reset.
-- **No-AI pace** (comparison only): build × 2 + test, + 20% coordination; give it solo and for a small team. Label it approximate.
+- **No-AI pace** (comparison only): from each task's size and risk only, never from the AI-assisted hours: build × 3 + test × 1.5, + 20% coordination. It's the same baseline in both modes, so the same task list gives the same number. Give it solo and for a small team, and label it approximate.
 
 ## Step 5: Present it
 
@@ -99,7 +101,7 @@ If the user pasted an estimate to check, add one line comparing it. For example:
 
 ## Step 6: Calibrate
 
-These defaults come from real runs, but from someone else's machine and codebase. Offer calibration at the end:
+The mode B defaults come from **one** run on someone else's machine and codebase. In a held-out test on that run (fit on its first phases, predict the rest), they came out **24% low on agent-hours and 37% low on wall-clock**. Until the user has their own numbers, present the upper half of the range as the plan and say why. Offer calibration at the end:
 
 - **Mode A:** when a task is done, the user gives actual hours. Suggest a personal multiplier when actual hours are consistently off.
 - **Mode B:** after a run, `scripts/calibrate.py <subagents dir> --tasks tasks.json` reads the transcripts' timestamps (read-only, no content). It prints real minutes per kind, risk and size, the effective parallelism and the retry rate. Put those into the estimate JSON or the tables.

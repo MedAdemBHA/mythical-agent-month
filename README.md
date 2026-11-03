@@ -17,14 +17,23 @@ Ask an AI "how long will this roadmap take?" and you get "3-5 months", sprint pl
 
 We ran the real thing: a **106-task, 7-repo SaaS roadmap** built by autonomous agents (worktrees, parallel lanes, tests first, reviewer agents, phase-end suites).
 
-| | Naive AI estimate | Mythical Agent Month | Real run |
-|---|---|---|---|
-| Time | "about 5 months" (60-100 days) | **36.4 h** agent wall-clock | **35.3 h** |
-| Agent-hours | - | 65.5 | 64.2 |
-| Usage | - | ~39% of a weekly limit | ~35-40% |
-| Ready to merge | - | 3-6 calendar days | ~3 days |
+| | Naive AI estimate | Real run |
+|---|---|---|
+| Time | "about 5 months" (60-100 days) | **35.3 h** agent wall-clock |
+| Agent-hours | - | 64.2 |
+| Usage | - | ~35-40% of a weekly limit |
+| Ready to merge | - | ~3 days |
 
 The code wasn't the slow part. Tests, review, decisions and the usage limit were.
+
+### How accurate is the skill? Honestly:
+
+| Test | Wall-clock | Agent-hours |
+|---|---|---|
+| In-sample fit: defaults measured on this run, run on its own task graph | 31.1 h vs 35.3 h (-12%) | 55.9 vs 64.2 (-13%) |
+| **Held-out:** fit on phases 0-3, predict phases 4-9 blind | **12.4 h vs 19.8 h (-37%)** | 20.9 vs 27.6 (-24%) |
+
+So it gets the **order of magnitude** right: hours, not months. It still **leans optimistic**, and it's **n = 1**: one project, one laptop, one setup. The skill knows this and tells the agent to plan on the upper half of its range until you calibrate. The method is in [`examples/holdout.md`](examples/holdout.md). **A second, independent run is the missing evidence. Yours would help.**
 
 ## What it does
 
@@ -46,7 +55,7 @@ Both modes show the no-AI pace as a **comparison line only**.
 
 ## Numbers from real runs, not vibes
 
-The defaults are measured on **398 real subagent runs**:
+The defaults are measured on **398 subagent runs from one real build**, not hand-tuned:
 
 | Agent kind | Median | p75 |
 |---|---|---|
@@ -58,8 +67,8 @@ The defaults are measured on **398 real subagent runs**:
 
 Lessons from that run that ended up in the model:
 
-- **Effective parallelism ≈ 0.3 × your agent cap.** 6 agents gave about 1.8 agents of throughput once test slots, file conflicts and merge locks queued.
-- **Risk dominates size.** High-risk tasks (billing, auth, migrations) took about 2.7× a normal one. That's also where every real bug was caught.
+- **Effective parallelism ≈ 0.3 × your agent cap.** 6 agents gave about 1.8 agents of throughput once test slots, file conflicts and merge locks queued, and it fell to 1.4 late in the run.
+- **Risk dominates size.** High-risk tasks (billing, auth, migrations) took 2.7× a normal one; size by file count barely mattered. High risk is also where every real bug was caught.
 - **The failure tax is real: +15-25%** for retries, fix-up agents, broken gates and full disks.
 - **The human tail is small in hours but sets the calendar:** decisions, migrations, local setup.
 
@@ -71,6 +80,13 @@ It works with **any agent that supports the open [Agent Skills](https://agentski
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/MedAdemBHA/mythical-agent-month/main/install.sh | bash -s -- all
+```
+
+Prefer not to pipe to bash? It only copies one folder, so do it by hand:
+
+```bash
+git clone --depth 1 https://github.com/MedAdemBHA/mythical-agent-month.git
+cp -R mythical-agent-month/skills/mythical-agent-month ~/.claude/skills/   # or your agent's folder below
 ```
 
 Or choose your agents, and add `--project` to install into the current repo instead of your home folder:

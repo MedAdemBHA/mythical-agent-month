@@ -38,17 +38,23 @@ All defaults are seeded from one real run (see references/real-runs.md). Calibra
 import json
 import sys
 
-# Agent minutes per task, [low, likely, high], normal risk. Includes the agent's own gate tests.
-AGENT_MINUTES = {"XS": [2, 5, 12], "S": [4, 10, 22], "M": [6, 15, 32], "L": [10, 22, 45]}
-RISK_MULT = {"low": 0.4, "normal": 1.0, "high": 2.0}
-REVIEW_MINUTES = [4, 8, 26]      # separate reviewer agent per reviewed task
-MERGE_MINUTES = 1                # merge agent / scripted merge per task
-PHASE_CHECK_MINUTES = 20         # full suites + fix-ups between phases
+# Agent minutes per task, [low (p25), likely (median), high (p90)], normal risk, incl. the agent's own gate tests.
+# Measured on run 1 (references/real-runs.md), not hand-tuned. Size by file count was a weak signal there;
+# risk was the strong one.
+AGENT_MINUTES = {"XS": [2, 4, 15], "S": [3, 5, 25], "M": [5, 10, 35], "L": [7, 12, 40]}
+RISK_MULT = {"low": 0.3, "normal": 1.0, "high": 2.7}   # measured medians vs normal risk
+REVIEW_MINUTES = [4, 8, 26]      # separate reviewer agent per reviewed task (median 8.4)
+MERGE_MINUTES = 1                # merge agent / scripted merge per task (mean 1.2)
+PHASE_CHECK_MINUTES = 12         # full suites + fix-ups between phases (mean 12.2)
+# Held-out test on run 1 (fit on phases 0-3, predict 4-9): agent-hours -24%, wall-clock -37%.
+HOLDOUT_NOTE = ("Held-out error on the reference run: agent-hours -24%, wall-clock -37% (later phases ran slower). "
+                "Until you calibrate, plan on the upper half of the range.")
 
 # Developer + AI hours, [low, likely, high] (build only; test is a multiple by risk)
 DEV_BUILD_HOURS = {"XS": [0.25, 0.5, 1], "S": [1, 2, 4], "M": [3, 6, 10], "L": [8, 14, 24]}
 DEV_TEST_MULT = {"low": 0.5, "normal": 1.0, "high": 2.5}
-NO_AI_TEST_MULT = {"low": 0.5, "normal": 1.0, "high": 1.5}
+# No-AI comparison: build is 3x slower without AI, review and test 1.5x, plus 20% coordination.
+NO_AI_BUILD_X, NO_AI_TEST_X, NO_AI_COORD = 3.0, 1.5, 1.2
 
 
 def pert(r):
@@ -79,15 +85,17 @@ def unblock_first(items, decisions):
 
 
 def human_team_days(items, team_size=1):
-    """Rough no-AI pace: build x2, plus test, plus 20% coordination. A comparison line, never the estimate."""
+    """No-AI comparison line, never the estimate. One baseline for both modes: it uses only each task's size
+    and risk (never the input build/test hours, which are AI-assisted), so the same task list gives the same
+    number in dev mode and agent mode."""
     total = 0
     for it in items:
         size = it.get("size", "M")
         if size not in DEV_BUILD_HOURS:
             size = "L"
-        b = pert(it.get("build", DEV_BUILD_HOURS[size]))
-        t = pert(it["test"]) if "test" in it else b * NO_AI_TEST_MULT.get(it.get("risk", "normal"), 1)
-        total += (b * 2 + t) * 1.2
+        b = pert(DEV_BUILD_HOURS[size])
+        t = b * DEV_TEST_MULT.get(it.get("risk", "normal"), 1)
+        total += (b * NO_AI_BUILD_X + t * NO_AI_TEST_X) * NO_AI_COORD
     return total / 6 / team_size
 
 
@@ -220,8 +228,11 @@ def mode_agent(data, as_json):
     work_m = (code_m + review_m + merge_m) * (1 + tax) + phase_m
     work_h = work_m / 60
     wall_h = max(cp_min / 60 + phase_m / 60, work_h / eff)
-    wall_lo = max(cp_min / 60 * 0.6, (lo_sum * (1 + tax) / 60) / eff)
-    wall_hi = max(cp_min / 60 * 1.8, (hi_sum + review_m + merge_m) * (1 + 0.25) / 60 / eff + phase_m / 60)
+    # same formula at the low and high ends: every agent kind is in both, only task minutes and tax move
+    lo_work_h = ((lo_sum + REVIEW_MINUTES[0] * reviewed + merge_m) * (1 + tax * 0.5) + phase_m) / 60
+    hi_work_h = ((hi_sum + REVIEW_MINUTES[2] * reviewed + merge_m) * (1 + max(tax, 0.25)) + phase_m) / 60
+    wall_lo = max(cp_min / 60 * 0.7 + phase_m / 60, lo_work_h / eff)
+    wall_hi = max(cp_min / 60 * 1.6 + phase_m / 60, hi_work_h / eff)
     agent_days = wall_h / agent_h_day
 
     rev_h = human.get("review_minutes_per_task", 3) * len(items) / 60
@@ -264,6 +275,7 @@ def mode_agent(data, as_json):
     print(f"**Calendar to ready-to-merge:** decisions up front {cal[0]:.1f} days · batched {cal[1]:.1f} days · "
           f"one by one {cal[2]:.1f} days" + (f" · +{usage_wait_days} days waiting for usage resets" if usage_wait_days else ""))
     print(f"**For comparison only:** one developer without AI ~{solo:.0f} days · a team of {team} ~{solo / team:.0f} days")
+    print(f"\n_{HOLDOUT_NOTE}_")
     if len(path) > 1:
         shown = " → ".join(path[:12]) + (" → ..." if len(path) > 12 else "")
         print(f"\n**Critical path:** {shown}")

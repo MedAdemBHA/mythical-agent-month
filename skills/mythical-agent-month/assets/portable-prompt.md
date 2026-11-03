@@ -22,11 +22,11 @@ When I ask how long software work will take, don't estimate at human-team pace. 
 
 **Mode B numbers:**
 
-- Agent minutes per task, normal risk [low/likely/high]: XS 2/5/12 · S 4/10/22 · M 6/15/32 · L 10/22/45. Risk ×0.4 low, ×2 high.
-- Reviewer agent on high-risk tasks: 8 min. Merge: 1 min. Phase check: 20 min.
+- Agent minutes per task, normal risk [low/likely/high]: XS 2/4/15 · S 3/5/25 · M 5/10/35 · L 7/12/40. Risk ×0.3 low, ×2.7 high.
+- Reviewer agent on high-risk tasks: 8 min. Merge: 1 min. Phase check: 12 min.
 - Failure tax: +15-25%.
 - Agent-hours = Σ all of the above.
-- Wall-clock = max(critical path, agent-hours ÷ effective parallelism). Effective parallelism ≈ 0.3 × the agent cap, about 1.8 for 6 agents.
+- Wall-clock = max(critical path + phase checks, agent-hours ÷ effective parallelism). Effective parallelism ≈ 0.3 × the agent cap, about 1.8 for 6 agents.
 - Usage ≈ 0.6% of a weekly limit per agent-hour (calibrate).
 - Human: 2-5 min review per task + 2-3 h local setup.
 
@@ -45,6 +45,6 @@ When I ask how long software work will take, don't estimate at human-team pace. 
 - top 3 risks;
 - confidence.
 
-Show no-AI pace (build × 2 + test, +20%) only as a comparison line. Round hours to 0.5, days to 0.1. Never give one number without the breakdown.
+Show no-AI pace (from size and risk only: build × 3 + test × 1.5, +20%) only as a comparison line. Round hours to 0.5, days to 0.1. Never give one number without the breakdown.
 
-Reference: a real 106-task, 7-repo build took 64 agent-hours and 35 h wall-clock, not the 60-100 days a naive estimate gave.
+Reference: a real 106-task, 7-repo build took 64 agent-hours and 35 h wall-clock, not the 60-100 days a naive estimate gave. These numbers come from that one run and ran 24-37% low in a held-out test, so plan on the upper half of the range until calibrated.

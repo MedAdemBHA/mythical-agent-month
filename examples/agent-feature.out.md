@@ -4,14 +4,16 @@
 
 | Part | Value |
 |------|-------|
-| Agent work (all agents, incl. 20% failure tax) | 4.2 agent-hours |
-| Critical path | 2.8 h over 5 tasks |
-| **Agent wall-clock** | **3.5 h** (range 2-5 h) · 0.2 days at 20 h/day |
+| Agent work (all agents, incl. 20% failure tax) | 3.2 agent-hours |
+| Critical path | 2.4 h over 5 tasks |
+| **Agent wall-clock** | **2.8 h** (range 2-5 h) · 0.1 days at 20 h/day |
 | Human: review + local setup | 2.2 h · 0.4 focus days |
-| Usage | ~3% of a weekly limit (0.1 weeks of budget at 50% available) |
+| Usage | ~2% of a weekly limit (0.0 weeks of budget at 50% available) |
 
 **Calendar to ready-to-merge:** decisions up front 0.5 days · batched 2.5 days · one by one 3.3 days
-**For comparison only:** one developer without AI ~28 days · a team of 4 ~7 days
+**For comparison only:** one developer without AI ~29 days · a team of 4 ~7 days
+
+_Held-out error on the reference run: agent-hours -24%, wall-clock -37% (later phases ran slower). Until you calibrate, plan on the upper half of the range._
 
 **Critical path:** t1 → t2 → t4 → t7 → t8
 
