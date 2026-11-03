@@ -62,9 +62,10 @@ If you can run Python, write the tasks as JSON and run `scripts/totals.py <file>
 - **Mode B**:
   - agent-hours = Σ (task minutes + reviewer minutes + merge) × (1 + failure tax) + phase checks;
   - wall-clock = max(critical path + phase checks, agent-hours ÷ effective parallelism);
-  - calendar to ready-to-merge = wall-clock ÷ agent hours per day + human hours ÷ focus hours + decision waits + usage-reset waits;
+  - **plan** = likely × 1.3 until the user has calibrated (in run 1 the raw likely value was 12-37% low), or likely once calibrated. The plan number is the bold figure; likely and the range sit beside it;
+  - calendar to ready-to-merge = plan wall-clock ÷ agent hours per day + human hours ÷ focus hours + decision waits + usage-reset waits;
   - usage = agent-hours × % per agent-hour. If it's above what's left this week, add the days until the reset.
-- **No-AI pace** (comparison only): from each task's size and risk only, never from the AI-assisted hours: build × 3 + test × 1.5, + 20% coordination. It's the same baseline in both modes, so the same task list gives the same number. Give it solo and for a small team, and label it approximate.
+- **No-AI pace** (comparison only, unmeasured): from each task's size and risk only, never from the AI-assisted hours: build × 2-3 + test × 1-1.5, + 10-20% coordination. It's the same baseline in both modes. Always give it as a range and label it unmeasured. Never put it in the bottom line, and never use it as the speedup headline.
 
 ## Step 5: Present it
 
@@ -73,7 +74,7 @@ Keep prose short; the tables carry the answer.
 ```markdown
 ## Estimate: <scope>
 
-**Bottom line:** <Mode B: agents run about W h (range), ~U% of a weekly limit; ready to merge in C1-C3 calendar days depending on decisions. | Mode A: about X effort days; A-B calendar days depending on decisions.> Without AI: ~H days (comparison only).
+**Bottom line:** <Mode B: plan on about P h of agent wall-clock (likely W h, range L-H), ~U% of a weekly limit; ready to merge in C1-C3 calendar days depending on decisions. | Mode A: about X effort days; A-B calendar days depending on decisions.>
 
 **Assumptions:** <profile in one or two lines>
 

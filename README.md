@@ -28,12 +28,12 @@ The code wasn't the slow part. Tests, review, decisions and the usage limit were
 
 ### How accurate is the skill? Honestly:
 
-| Test | Wall-clock | Agent-hours |
+| Test | Raw "likely" wall-clock | **Plan** (likely × 1.3, the bold number it prints) |
 |---|---|---|
-| In-sample fit: defaults measured on this run, run on its own task graph | 31.1 h vs 35.3 h (-12%) | 55.9 vs 64.2 (-13%) |
-| **Held-out:** fit on phases 0-3, predict phases 4-9 blind | **12.4 h vs 19.8 h (-37%)** | 20.9 vs 27.6 (-24%) |
+| In-sample fit: defaults measured on this run, run on its own task graph | 31.1 h vs 35.3 h real (-12%) | **40 h (+14%)** |
+| **Held-out:** fit on phases 0-3, predict phases 4-9 blind | 12.4 h vs 19.8 h real (-37%) | **16 h (-19%)** |
 
-So it gets the **order of magnitude** right: hours, not months. It still **leans optimistic**, and it's **n = 1**: one project, one laptop, one setup. The skill knows this and tells the agent to plan on the upper half of its range until you calibrate. The method is in [`examples/holdout.md`](examples/holdout.md). **A second, independent run is the missing evidence. Yours would help.**
+So it gets the **order of magnitude** right: hours, not months. The raw model **leans optimistic**, so until you calibrate, the number it prints in bold is the **plan** (likely × 1.3), with the likely value and the range beside it. It's still **n = 1**: one project, one laptop, one setup. The method is in [`examples/holdout.md`](examples/holdout.md). **A second, independent run is the missing evidence. Yours would help.**
 
 ## What it does
 
@@ -76,7 +76,13 @@ The full case study, with the incidents and what each one cost, is in [`referenc
 
 ## Install
 
-It works with **any agent that supports the open [Agent Skills](https://agentskills.io) standard** (`SKILL.md`). One line:
+**Claude Code plugin** (Claude Code 2.1.275 or later):
+
+```
+/plugin install mythical-agent-month --marketplace MedAdemBHA/mythical-agent-month
+```
+
+It also works with **any agent that supports the open [Agent Skills](https://agentskills.io) standard** (`SKILL.md`). One line:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/MedAdemBHA/mythical-agent-month/main/install.sh | bash -s -- all
@@ -134,6 +140,16 @@ Mode B input, minimal:
 }
 ```
 
+## Does the skill actually change answers?
+
+[`examples/with-vs-without.md`](examples/with-vs-without.md) has one everyday prompt answered with and without the skill by Claude Code's own eval runner, both copied verbatim. Without the skill, Claude already calls a 6-week estimate too long. The skill's difference is structure: decision waits kept separate from effort, a calendar range, questions to unblock first, and per-task risk.
+
+[`evals/`](evals/) holds 6 cases you can run yourself, including one where the skill must **not** apply (a team working without AI):
+
+```bash
+claude plugin eval . --runs 3      # with vs without the skill, scored by an LLM judge
+```
+
 ## Calibrate with your own runs
 
 My numbers come from my machine and my codebase, so yours will differ. Point the calibrator at your Claude Code subagent transcripts:
@@ -162,7 +178,9 @@ skills/mythical-agent-month/
   scripts/totals.py         the math: PERT, critical path, parallelism, usage
   scripts/calibrate.py      read your agent transcripts, get your own numbers
   assets/portable-prompt.md paste-in version for any assistant
-examples/                   inputs + generated outputs
+examples/                   inputs, generated outputs, held-out test, with vs without
+evals/                      6 eval cases for `claude plugin eval`
+.claude-plugin/             plugin + marketplace manifests
 install.sh                  installer for every supported agent
 assets/hero.html            source of the banner (render: headless Chrome, 1280x640 @3x)
 ```

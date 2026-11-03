@@ -4,3 +4,4 @@ __pycache__/
 *.skill
 runs.csv
 assets/hero.png
+evals/results/

@@ -47,14 +47,19 @@ REVIEW_MINUTES = [4, 8, 26]      # separate reviewer agent per reviewed task (me
 MERGE_MINUTES = 1                # merge agent / scripted merge per task (mean 1.2)
 PHASE_CHECK_MINUTES = 12         # full suites + fix-ups between phases (mean 12.2)
 # Held-out test on run 1 (fit on phases 0-3, predict 4-9): agent-hours -24%, wall-clock -37%.
+# Until calibrated, the bold "Plan" number is likely x 1.3. On run 1 that lands at +14% in-sample and -19% held-out
+# (versus -12% / -37% for the raw likely value). Set "calibrated": true, or give per-task minutes, to plan on likely.
+PLAN_FACTOR = 1.3
 HOLDOUT_NOTE = ("Held-out error on the reference run: agent-hours -24%, wall-clock -37% (later phases ran slower). "
-                "Until you calibrate, plan on the upper half of the range.")
+                "Plan = likely x 1.3 until you calibrate.")
 
 # Developer + AI hours, [low, likely, high] (build only; test is a multiple by risk)
 DEV_BUILD_HOURS = {"XS": [0.25, 0.5, 1], "S": [1, 2, 4], "M": [3, 6, 10], "L": [8, 14, 24]}
 DEV_TEST_MULT = {"low": 0.5, "normal": 1.0, "high": 2.5}
-# No-AI comparison: build is 3x slower without AI, review and test 1.5x, plus 20% coordination.
-NO_AI_BUILD_X, NO_AI_TEST_X, NO_AI_COORD = 3.0, 1.5, 1.2
+# No-AI comparison, an UNMEASURED baseline: build 2-3x slower without AI, review and test 1-1.5x, plus 10-20%
+# coordination. Printed as a wide range and never as the estimate.
+NO_AI_LOW = (2.0, 1.0, 1.1)
+NO_AI_HIGH = (3.0, 1.5, 1.2)
 
 
 def pert(r):
@@ -85,18 +90,21 @@ def unblock_first(items, decisions):
 
 
 def human_team_days(items, team_size=1):
-    """No-AI comparison line, never the estimate. One baseline for both modes: it uses only each task's size
-    and risk (never the input build/test hours, which are AI-assisted), so the same task list gives the same
-    number in dev mode and agent mode."""
-    total = 0
-    for it in items:
-        size = it.get("size", "M")
-        if size not in DEV_BUILD_HOURS:
-            size = "L"
-        b = pert(DEV_BUILD_HOURS[size])
-        t = b * DEV_TEST_MULT.get(it.get("risk", "normal"), 1)
-        total += (b * NO_AI_BUILD_X + t * NO_AI_TEST_X) * NO_AI_COORD
-    return total / 6 / team_size
+    """No-AI comparison range (low, high) in days, never the estimate. One baseline for both modes: it uses only
+    each task's size and risk (never the input build/test hours, which are AI-assisted), so the same task list
+    gives the same range in dev mode and agent mode. Unmeasured: show it as a range, keep it out of headlines."""
+    out = []
+    for bx, tx, cx in (NO_AI_LOW, NO_AI_HIGH):
+        total = 0
+        for it in items:
+            size = it.get("size", "M")
+            if size not in DEV_BUILD_HOURS:
+                size = "L"
+            b = pert(DEV_BUILD_HOURS[size])
+            t = b * DEV_TEST_MULT.get(it.get("risk", "normal"), 1)
+            total += (b * bx + t * tx) * cx
+        out.append(total / 6 / team_size)
+    return tuple(out)
 
 
 # ---------------------------------------------------------------- dev mode
@@ -123,7 +131,7 @@ def mode_dev(data, as_json):
     human = human_team_days(items)
     res = {"effort_hours": round(effort_h, 1), "effort_days": round(effort_d, 1),
            "calendar_days": [round(effort_d, 1), round(effort_d + batched_w, 1), round(effort_d + serial_w, 1)],
-           "solo_no_ai_days": round(human, 1)}
+           "solo_no_ai_days_range": [round(human[0]), round(human[1])]}
     if as_json:
         print(json.dumps(res, indent=1))
         return
@@ -141,7 +149,7 @@ def mode_dev(data, as_json):
     print()
     print(f"**Calendar:** decisions up front {effort_d:.1f} days · batched {effort_d + batched_w:.1f} days · "
           f"one by one {effort_d + serial_w:.1f} days")
-    print(f"**One developer without AI (approx.):** {human:.1f} days")
+    print(f"**For comparison only, one developer without AI:** ~{human[0]:.0f}-{human[1]:.0f} days (unmeasured baseline)")
     ub = unblock_first(items, decisions)
     if ub:
         print("\n**Unblock first:**")
@@ -233,7 +241,11 @@ def mode_agent(data, as_json):
     hi_work_h = ((hi_sum + REVIEW_MINUTES[2] * reviewed + merge_m) * (1 + max(tax, 0.25)) + phase_m) / 60
     wall_lo = max(cp_min / 60 * 0.7 + phase_m / 60, lo_work_h / eff)
     wall_hi = max(cp_min / 60 * 1.6 + phase_m / 60, hi_work_h / eff)
-    agent_days = wall_h / agent_h_day
+    calibrated = bool(data.get("calibrated")) or (bool(items) and all("minutes" in it for it in items))
+    pf = 1.0 if calibrated else PLAN_FACTOR
+    plan_h = min(max(wall_h * pf, wall_lo), wall_hi)
+    plan_work_h = work_h * pf
+    agent_days = plan_h / agent_h_day
 
     rev_h = human.get("review_minutes_per_task", 3) * len(items) / 60
     setup = human.get("local_setup_hours", [2, 3])
@@ -244,7 +256,7 @@ def mode_agent(data, as_json):
     cal = [agent_days + human_d, agent_days + human_d + batched_w, agent_days + human_d + serial_w]
 
     pct_h = usage.get("weekly_pct_per_agent_hour", 0.6)
-    pct = work_h * pct_h
+    pct = plan_work_h * pct_h
     avail = usage.get("weekly_pct_available", 100)
     weeks = pct / avail if avail else 0
     usage_wait_days = max(0, -(-pct // avail) - 1) * 7 if avail and pct > avail else 0
@@ -252,12 +264,14 @@ def mode_agent(data, as_json):
     solo = human_team_days(items)
     team = data.get("human_team_size", 4)
 
-    res = {"tasks": len(items), "agent_hours": round(work_h, 1), "wall_clock_hours": round(wall_h, 1),
+    res = {"tasks": len(items), "calibrated": calibrated, "plan_wall_clock_hours": round(plan_h, 1),
+           "plan_agent_hours": round(plan_work_h, 1), "agent_hours": round(work_h, 1), "wall_clock_hours": round(wall_h, 1),
            "wall_clock_range_hours": [round(wall_lo, 1), round(wall_hi, 1)],
            "critical_path_hours": round(cp_min / 60, 1), "critical_path_tasks": len(path),
            "human_hours": round(human_h, 1), "calendar_days": [round(c, 1) for c in cal],
            "weekly_usage_pct": round(pct), "weeks_of_usage": round(weeks, 2),
-           "usage_wait_days": usage_wait_days, "solo_no_ai_days": round(solo), f"team_of_{team}_days": round(solo / team)}
+           "usage_wait_days": usage_wait_days, "solo_no_ai_days_range": [round(solo[0]), round(solo[1])],
+           f"team_of_{team}_no_ai_days_range": [round(solo[0] / team), round(solo[1] / team)]}
     if as_json:
         print(json.dumps(res, indent=1))
         return
@@ -266,16 +280,19 @@ def mode_agent(data, as_json):
     print()
     print("| Part | Value |")
     print("|------|-------|")
-    print(f"| Agent work (all agents, incl. {int(tax * 100)}% failure tax) | {work_h:.1f} agent-hours |")
+    plan_lbl = "Plan" if calibrated else f"Plan (likely × {PLAN_FACTOR:g}, not yet calibrated)"
+    print(f"| **Agent wall-clock: {plan_lbl}** | **{(f"{plan_h:.1f}" if plan_h < 10 else f"{plan_h:.0f}")} h** · likely {wall_h:.1f} h · range {wall_lo:.0f}-{wall_hi:.0f} h · {agent_days:.1f} days at {agent_h_day} h/day |")
+    print(f"| Agent work (all agents, incl. {int(tax * 100)}% failure tax) | plan {plan_work_h:.0f} agent-hours · likely {work_h:.1f} |")
     print(f"| Critical path | {cp_min / 60:.1f} h over {len(path)} tasks |")
-    print(f"| **Agent wall-clock** | **{wall_h:.1f} h** (range {wall_lo:.0f}-{wall_hi:.0f} h) · {agent_days:.1f} days at {agent_h_day} h/day |")
     print(f"| Human: review + local setup | {human_h:.1f} h · {human_d:.1f} focus days |")
     print(f"| Usage | ~{pct:.0f}% of a weekly limit ({weeks:.1f} weeks of budget at {avail}% available) |")
     print()
     print(f"**Calendar to ready-to-merge:** decisions up front {cal[0]:.1f} days · batched {cal[1]:.1f} days · "
           f"one by one {cal[2]:.1f} days" + (f" · +{usage_wait_days} days waiting for usage resets" if usage_wait_days else ""))
-    print(f"**For comparison only:** one developer without AI ~{solo:.0f} days · a team of {team} ~{solo / team:.0f} days")
-    print(f"\n_{HOLDOUT_NOTE}_")
+    print(f"**For comparison only, without AI (unmeasured baseline):** one developer ~{solo[0]:.0f}-{solo[1]:.0f} days · "
+          f"a team of {team} ~{solo[0] / team:.0f}-{solo[1] / team:.0f} days")
+    if not calibrated:
+        print(f"\n_{HOLDOUT_NOTE}_")
     if len(path) > 1:
         shown = " → ".join(path[:12]) + (" → ..." if len(path) > 12 else "")
         print(f"\n**Critical path:** {shown}")

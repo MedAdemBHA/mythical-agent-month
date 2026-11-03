@@ -79,6 +79,10 @@ Gate tests are usually most of an agent's minutes. Rough model: **suites run × 
 - **Wall-clock = max(critical path + phase checks, agent-hours ÷ effective parallelism).** If the critical path wins, split critical tasks; more agents won't help.
 - Effective parallelism also drops late in a long run: in run 1 it was 1.7 for phases 0-3 and 1.4 for phases 4-9 (disk pressure, Docker restarts, usage brakes).
 
+### Plan factor
+
+Until you have your own run, the bold **plan** figure is likely × **1.3**. On run 1, the raw likely value came out 12% low in-sample and 37% low held-out; × 1.3 lands at +14% and −19%. Set `"calibrated": true` in the estimate JSON, or give per-task `minutes`, and the plan becomes likely and the held-out warning goes away.
+
 ### Failure tax
 
 Add **15-25%** to agent-hours for retries (8-13% of tasks needed a second try), fix-up agents after a phase check fails, broken gates, timeouts and orchestration bugs. Use 25% for a first run of a new workflow script.
@@ -115,4 +119,4 @@ Batch decisions into one session before the run. Agents can build with an ASSUME
 
 ## No-AI comparison
 
-From size and risk only, never from the AI-assisted hours in the input: (mode A build × 3 + mode A test × 1.5) × 1.2 coordination ÷ 6 focus hours. Both modes use this same baseline, so the same task list gives the same number. Show solo and for a team of 4. It's a comparison line, never the estimate.
+**Unmeasured.** It's built from size and risk only, never from the AI-assisted hours in the input: (mode A build × 2-3 + mode A test × 1-1.5) × 1.1-1.2 coordination ÷ 6 focus hours. Both modes use this same baseline. Show it as a range, solo and for a team of 4. It's a comparison line, never the estimate or the headline; it sits on unmeasured mode A tables.

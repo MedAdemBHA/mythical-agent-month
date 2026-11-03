@@ -1,0 +1,10 @@
+{
+  "name": "mythical-agent-month",
+  "version": "1.2.0",
+  "description": "Realistic estimates for software built with AI agents: agent wall-clock, critical path, usage budget and the human calendar, seeded from measured agent runs.",
+  "author": { "name": "MedAdemBHA" },
+  "homepage": "https://github.com/MedAdemBHA/mythical-agent-month",
+  "repository": "https://github.com/MedAdemBHA/mythical-agent-month",
+  "license": "MIT",
+  "keywords": ["estimation", "planning", "agents", "skills"]
+}

@@ -41,5 +41,6 @@ Seed rows from the real run in `real-runs.md` (medians per group):
 | Agent-hours ÷ busy hours | `machine.effective_parallelism` |
 | Retry share + fix-up agents | `failure_tax` |
 | Weekly % used ÷ agent-hours | `usage.weekly_pct_per_agent_hour` |
+| All of the above done | `"calibrated": true`: the plan becomes likely, and the held-out warning goes away |
 
 Add the run to `real-runs.md` so the next estimate has a reference case.

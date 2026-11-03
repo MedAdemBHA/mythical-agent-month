@@ -28,6 +28,7 @@ When I ask how long software work will take, don't estimate at human-team pace. 
 - Agent-hours = Σ all of the above.
 - Wall-clock = max(critical path + phase checks, agent-hours ÷ effective parallelism). Effective parallelism ≈ 0.3 × the agent cap, about 1.8 for 6 agents.
 - Usage ≈ 0.6% of a weekly limit per agent-hour (calibrate).
+- **Plan = likely × 1.3** until calibrated; make the plan number the bold one.
 - Human: 2-5 min review per task + 2-3 h local setup.
 
 **Use PERT** = (low + 4 × likely + high) / 6.
@@ -45,6 +46,6 @@ When I ask how long software work will take, don't estimate at human-team pace. 
 - top 3 risks;
 - confidence.
 
-Show no-AI pace (from size and risk only: build × 3 + test × 1.5, +20%) only as a comparison line. Round hours to 0.5, days to 0.1. Never give one number without the breakdown.
+Show no-AI pace (from size and risk only: build × 2-3 + test × 1-1.5, +10-20%) only as a range on a comparison line, labelled unmeasured, never as the headline. Round hours to 0.5, days to 0.1. Never give one number without the breakdown.
 
 Reference: a real 106-task, 7-repo build took 64 agent-hours and 35 h wall-clock, not the 60-100 days a naive estimate gave. These numbers come from that one run and ran 24-37% low in a held-out test, so plan on the upper half of the range until calibrated.

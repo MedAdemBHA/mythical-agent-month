@@ -20,7 +20,7 @@
 | Waiting on decisions | n/a | 2 decisions, see calendar |
 
 **Calendar:** decisions up front 14.4 days · batched 16.4 days · one by one 17.2 days
-**One developer without AI (approx.):** 28.6 days
+**For comparison only, one developer without AI:** ~17-29 days (unmeasured baseline)
 
 **Unblock first:**
 - Do pending invites count against the seat limit? (owner: product, blocks 1 task)

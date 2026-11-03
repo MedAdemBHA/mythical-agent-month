@@ -1,0 +1,12 @@
+{
+  "name": "mythical-agent-month",
+  "description": "Estimates for agent-built software",
+  "owner": { "name": "MedAdemBHA" },
+  "plugins": [
+    {
+      "name": "mythical-agent-month",
+      "source": "./",
+      "description": "Realistic estimates for software built with AI agents, seeded from measured agent runs."
+    }
+  ]
+}

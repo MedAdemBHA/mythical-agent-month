@@ -37,3 +37,4 @@ The question: do the defaults predict work they weren't fit on? There's only one
 - **The model is optimistic.** Medians understate a long tail, and late phases were slower. The skill tells the agent to present the upper half of its range until the user calibrates.
 - **Parallelism isn't constant.** It degraded as the machine filled up. With the real 1.4, the wall-clock error would be about -25%.
 - **It's still n = 1.** Same project, same laptop, same orchestration. An independent run, especially from someone else, is the evidence that's missing.
+- **You can't re-run it yet.** The per-run timing data comes from a client project and isn't published. An anonymised timing file (task id, phase, risk, size, model, start and end offsets; no content) will be added if the client agrees.
